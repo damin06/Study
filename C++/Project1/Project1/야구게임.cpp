@@ -1,5 +1,4 @@
 #include <iostream>
-#include <array>
 using namespace std;
 
 int main()
@@ -67,12 +66,12 @@ int main()
 		}
 		if(strike !=0)
 		{
-			cout << strike << "strike" << endl;
+			cout << strike << "스트라이크" << endl;
 		}
 
 		if(ball !=0)
 		{
-			cout << ball << "ball" << endl;
+			cout << ball << "볼" << endl;
 		}
 		IGamecount++;
 	}
