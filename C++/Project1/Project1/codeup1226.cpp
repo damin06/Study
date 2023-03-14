@@ -3,19 +3,19 @@ using namespace std;
 
 int main()
 {
-	int lotto[7];
-	int user[6];
-    int a = 0;
-    int b = 0;
-    int output;
+	int lotto[7]; //이번 주 로또 번호
+	int user[6]; //유저 로또 번호    
+    int a = 0; //맞은 개수
+    int b = 0; //보너스 번호 일치
+    int output; //출력
 
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 7; i++) //이번 주 로또 번호 입력
     {
         cin >> lotto[i];
     }
         
 
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 6; i++) //유저 로또 번호 입력
     {
         cin >> user[i];
     }
@@ -24,14 +24,13 @@ int main()
     {
         for(int j=0; j<6; j++)
         {
-            if (lotto[i] == user[j])
+            if (lotto[i] == user[j]) //이번 주 로또번호와 유저 로또 번호가 같으면 a++
             {
                 a++;
             }
         }
         
-
-        if(lotto[6] == user[i])
+        if(lotto[6] == user[i]) //보너스 번호와 유저 로또 번호가 같으면 b++
         {
             b++;
         }
@@ -43,7 +42,7 @@ int main()
         output = 1;
         break;
     case 5:
-        output =b >= 1 ? 2 : 3;
+        output =b >= 1 ? 2 : 3; //b가 1보다 크거나 같으면 2 아니면 3
         break;
     case 4:
         output = 4;
@@ -54,9 +53,7 @@ int main()
     default:
         output = 0;
         break;
-
-
     }
   
-    cout << output;
+    cout << output; //출력
 }
