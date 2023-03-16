@@ -77,3 +77,125 @@ int main()
 	}
 
 }
+
+
+
+//#include <iostream>
+//#include<Windows.h>
+//using namespace std;
+//
+//void baseball(int a[3], int b[3])
+//{
+//	int count = 1;
+//	int c[3];
+//	int d[3];
+//
+//	int strike = 0;
+//	int ball = 0;
+//	char ch = ' ';
+//
+//	while (true)
+//	{
+//		system("cls");
+//
+//		strike = 0;
+//		ball = 0;
+//		if (count % 2 == 1)
+//		{
+//			cout << "이재명 차례" << endl;
+//		}
+//		else
+//		{
+//			cout << "윤석열 차례" << endl;
+//		}
+//
+//		cin >> c[0] >> c[1] >> c[2];
+//
+//		while (true)
+//		{
+//			for (int i = 0; i < 3; i++)
+//			{
+//				d[i] = (count % 2 == 1) ? b[i] : a[i];
+//
+//			}
+//
+//			for (int i = 0; i < 3; i++)
+//			{
+//				if (c[i] == d[i])
+//				{
+//					strike++;
+//				}
+//
+//				if (strike == 3)
+//				{
+//
+//					if (count % 2 == 1)
+//					{
+//						cout << "이재명 승!" << endl;
+//					}
+//					else
+//					{
+//						cout << "윤석열 승!" << endl;
+//					}
+//					return;
+//				}
+//
+//				for (int j = 2; j > 0; j--)
+//				{
+//					if (c[j] == d[i] && c[i] != d[i])
+//					{
+//						ball++;
+//					}
+//				}
+//			}
+//			break;
+//		}
+//		count++;
+//		if (strike > 0)
+//		{
+//			cout << strike << "STRIKE" << endl;
+//		}
+//
+//		if (ball > 0)
+//		{
+//			cout << ball << "BALL" << endl;
+//		}
+//
+//		system("pause");
+//		//cout << (strike > 0) ? strike : NULL << (ball > 0) ? ball : NULL;
+//	}
+//}
+//
+//int main()
+//{
+//	int a[3];
+//	int b[3];
+//
+//	cout << "이재명 : 숫자를 입력하시오 : ";
+//	for (int i = 0; i < 3; i++)
+//	{
+//		cin >> a[i];
+//		if (a[i] <= 0 || a[i] > 9)
+//		{
+//			cout << "범위를 초과하였습니다.";
+//			return 0;
+//		}
+//	}
+//
+//	system("cls");
+//
+//	cout << "윤석열 : 숫자를 입력하시오 : ";
+//	for (int i = 0; i < 3; i++)
+//	{
+//		cin >> b[i];
+//		if (b[i] <= 0 || b[i] > 9)
+//		{
+//			cout << "범위를 초과하였습니다.";
+//			return 0;
+//		}
+//	}
+//
+//	system("cls");
+//
+//	baseball(a, b);
+//}

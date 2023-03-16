@@ -1,3 +1,3 @@
-﻿  숫자 기억.cpp
-C:\Users\user\Documents\GitHub\Study\C++\Project1\Project1\숫자 기억.cpp(39,7): warning C4101: 'mod' :참조되지 않은 지역 변수입니다.
+﻿  Baseball(2Players).cpp
+C:\Users\user\Documents\GitHub\Study\C++\Project1\Project1\Baseball(2Players).cpp(155,7): warning C4101: 'mod' :참조되지 않은 지역 변수입니다.
   Project1.vcxproj -> C:\Users\user\Documents\GitHub\Study\C++\Project1\x64\Debug\Project1.exe
