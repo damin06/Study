@@ -34,9 +34,17 @@ public class Gun : MonoBehaviour
         bulletLineRenderer.enabled = false;
     }
 
+    private void Start()
+    {
+        magAmmo = magCapacity;
+        state = State.Ready;
+        lastFireTime = 0;
+    }
+
     private IEnumerator ShotEffect(Vector3 hitPosition)
     {
         muzzleFlashEffect.Play();
+        bulletLineRenderer.enabled = true;
         bulletLineRenderer.SetPosition(0, firePosition.position);
         bulletLineRenderer.SetPosition(1, hitPosition);
 
@@ -49,6 +57,8 @@ public class Gun : MonoBehaviour
     {
         state = State.Reloading;
         yield return new WaitForSeconds(reloadTime);
+        magAmmo = magCapacity;
+        state = State.Ready;
     }
 
     public bool Fire()
@@ -75,15 +85,15 @@ public class Gun : MonoBehaviour
                 target.OnDamage(damage, hit.point, hit.normal);
             }
             hitPosition = hit.point;
+            StartCoroutine(ShotEffect(hitPosition));
         }
         else
         {
             hitPosition = firePosition.position + firePosition.forward * fireDistance;
         }
 
-        StartCoroutine(ShotEffect(hitPosition));
         magAmmo--;
-        if (magAmmo >= 0)
+        if (magAmmo == 0)
         {
             state = State.Empty;
         }
@@ -100,14 +110,18 @@ public class Gun : MonoBehaviour
     }
 
 
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButton("Fire1"))
+        {
+            Fire();
+        }
 
+        if (Input.GetButton("Reload"))
+        {
+            StartCoroutine(ReloadRoutine());
+        }
     }
 }
