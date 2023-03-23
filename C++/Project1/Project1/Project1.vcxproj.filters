@@ -21,7 +21,7 @@
     <ClCompile Include="케익 자르기%2820302고다민%29.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="20302고다민.cpp">
+    <ClCompile Include="행맨.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="제어구조 도전 문제 4문제.cpp">
@@ -33,7 +33,7 @@
     <ClCompile Include="배열과벡터.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="codeup1226.cpp">
+    <ClCompile Include="코드업1226.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="숫자 기억.cpp">
@@ -45,10 +45,19 @@
     <ClCompile Include="factory.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="소스.cpp">
+    <ClCompile Include="백준 2563번 색종이.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SayTime.cpp">
+    <ClCompile Include="숫자퍼즐.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="클래스 실습.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="하노이 탑.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="빙고.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
