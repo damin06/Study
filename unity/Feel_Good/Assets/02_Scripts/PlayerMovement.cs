@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Camera followCam;
 
     public float targetSpeed = 6f;
+    public float rotationSpeed = 4f;
 
     public float currentSpeed => new Vector2(characterController.velocity.x, characterController.velocity.z).magnitude;
 
@@ -46,13 +47,38 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
     }
 
-    public void Rotate()
+    public void Rotate() //마우스 방향으로 보기
     {
-        if (currentSpeed > 0)
+        var targetRotaion = followCam.transform.eulerAngles.y;
+        transform.eulerAngles = Vector3.up * targetRotaion;
+    }
+
+    public void SetRotation()
+    {
+        Vector3 target;
+        bool isHit = playerInput.GetMousePos(out target);
+
+        if (isHit)
         {
-            var targetRotaion = followCam.transform.eulerAngles.y;
-            transform.eulerAngles = Vector3.up * targetRotaion;
+            Vector3 dir = target - transform.position;
+            dir.y = 0;
+            transform.rotation = Quaternion.LookRotation(dir);
         }
+
+
+        target.y = 0;
+        Vector3 v = target - transform.position;
+
+        float degree = Mathf.Atan2(v.x, v.z) * Mathf.Rad2Deg;
+
+        float rot = Mathf.LerpAngle(transform.eulerAngles.y, degree, Time.deltaTime * rotationSpeed);
+        transform.eulerAngles = new Vector3(0, rot, 0);
+
+        // Vector3 target = playerInput.moveInput;
+        // target.y = 0;
+        // Vector3 v = target - transform.position;
+
+        // float dgree = Mathf.Atan2(v.x, v.z);
     }
 
     private void UpdateAnimation(Vector2 moveInput)
