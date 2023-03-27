@@ -1,6 +1,6 @@
 #include<iostream>
-#include<conio.h>
-#include<list>
+#include <algorithm>
+
 using namespace std;
 
 
@@ -95,7 +95,7 @@ void BingoCount(int* _pNumber, int& iBingo)
         }
     }
 
-   
+ 
 }
 
 void ChangeNumber(int* _pNumber, int& input)
@@ -160,13 +160,15 @@ void Init(int* _pNumber)
     }
 }
 
-int SelectAninumber(int* _puNumber, AI_MODE _eMode)
+int SelectAinumber(int* _puNumber, AI_MODE _eMode)
 {
     int iNoneSelect[25] = {};
-    int count = 0;
+    int arr[10] = {};
+    int count = 0, temp = 10 , n = 0;
+    
 
-    switch (_eMode)
-    {
+switch (_eMode)
+{
     case AI_MODE::AM_EASY:
     {
         for(int i=0; i<25; i++)
@@ -182,10 +184,106 @@ int SelectAninumber(int* _puNumber, AI_MODE _eMode)
         break;
     case AI_MODE::AM_NORMAL:
     {
+        for (int i = 0; i < 5; i++)//가로
+        {
+            count = 0;
+            fill_n(arr, 5, 0);
+            for (int j = 0; j < 5; j++)
+            {
+                if(_puNumber[i * 5 + j] != INT_MAX)
+                {
+                    count++;
+                    arr[count]= _puNumber[i * 5 + j];
+                }
+            }
+
+            if(count <= temp)
+            {
+                temp = count;
+                fill_n(iNoneSelect, 6, 0);
+              
+                for(int k=0; k< temp; k++)
+                {
+                    iNoneSelect[k] = arr[k];
+                }
+            }
+           
+        }
+
+
+        for (int i = 0; i < 5; i++) //세로
+        {
+            count = 0;
+            fill_n(arr, 5, 0);
+            for (int j = 0; j < 5; j++)
+            {
+                if (_puNumber[j * 5 + i] != INT_MAX)
+                {
+                    count++;
+                    arr[count] = _puNumber[j * 5 + i];
+                }
+            }
+
+            if (count <= temp)
+            {
+                temp = count;
+                fill_n(iNoneSelect, 6, 0);
+                for (int k = 0; k < temp; k++)
+                {
+                    iNoneSelect[k] = arr[k];
+                }
+            }
+        }
+
+        count = 0;
+        fill_n(arr, 5, 0);
+        for (int i = 0; i < 5; i++) //왼쪽위에서 오른쪽 아래로 대각선
+        {
+            if (_puNumber[6 * i] != INT_MAX)
+            {
+                count++;
+                arr[count] = _puNumber[6 * i];
+            }
+        }
+
+        if (count <= temp)
+        {
+            temp = count;
+            fill_n(iNoneSelect, 6, 0);
+            for (int k = 0; k < temp; k++)
+            {
+                iNoneSelect[k] = arr[k];
+            }
+        }
+
+        count = 0;
+        fill_n(arr, 5, 0);
+        for (int i = 0; i < 5; i++)
+        { 
+            if (_puNumber[25 - 6 * i] != INT_MAX)
+            {
+                count++;
+                arr[count] = _puNumber[25 - 6 * i];
+            }
+        }
+
+        if (count <= temp)
+        {
+            temp = count;
+            fill_n(iNoneSelect, 6, 0);
+            for (int k = 0; k < temp; k++)
+            {
+                iNoneSelect[k] = arr[k];
+            }
+        }
+
+        
+        return iNoneSelect[rand() % temp];
     }
         break;
     case AI_MODE::AM_HARD:
     {
+
     }
         break;
     default:
@@ -248,17 +346,13 @@ int main()
             break;
         }
         RenderNumber(AI, AiBingo);
+
+        if(iInput != 0)
+        {
+            cout << "AI가 선택한 숫자는" << iInput << "입니다." << endl;
+
+        }
         
-        if (iBingo >= 5)
-        {
-            cout << "Player 님이 게임세서 승리하셨습니다." << endl;
-            break;
-        }
-        else if(AiBingo >= 5)
-        {
-            cout << "AI 님이 게임세서 승리하셨습니다." << endl;
-            break;
-        }
         cout << "숫자를 입력하세요(0: 종료): " << endl;
         cin >> iInput;
         
@@ -275,10 +369,25 @@ int main()
         ChangeNumber(Player, iInput);
         ChangeNumber(AI, iInput);
 
-        iInput = SelectAninumber(AI, aimode);
-        cout << "AI가 선택한 숫자는" << iInput << "입니다." << endl;
+        iInput = SelectAinumber(AI, aimode);
+
+
+
+        ChangeNumber(Player, iInput);
+        ChangeNumber(AI, iInput);
 
         BingoCount(Player, iBingo);
         BingoCount(AI, AiBingo);
+
+        if (iBingo >= 5)
+        {
+            cout << "Player 님이 게임세서 승리하셨습니다." << endl;
+            break;
+        }
+        else if (AiBingo >= 5)
+        {
+            cout << "AI 님이 게임세서 승리하셨습니다." << endl;
+            break;
+        }
     }
 }

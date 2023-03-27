@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f83ea307318e24ab9b18a1ccb51c96, type: 3}
+  m_Name: RegularBullet
+  m_EditorClassIdentifier: 
+  damage: 5
+  bulletSpeed: 20
+  impactObstaclePrefab: {fileID: 7856956721593769442, guid: 11d08b07d23163d4fa0c876e2883602e, type: 3}
+  impactEnemyPrefab: {fileID: 0}
+  lifeTime: 1.5
