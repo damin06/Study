@@ -12,15 +12,17 @@ public class Gun : MonoBehaviour
     }
     public State state { get; private set; }
 
+    private AudioSource audioSource;
+    private AudioClip ShotSound;
+    private AudioClip ReloadSound;
     public Transform firePosition; //총알나가는 위치와 방향
     public ParticleSystem muzzleFlashEffect;
-    public float bulletLineEffectTime = 0.03f;
-
     private LineRenderer bulletLineRenderer;
+
+
+    public float bulletLineEffectTime = 0.03f;
     public float damage = 25;
-
     public float fireDistance = 100f; //발사가능 거리
-
     public int magCapacity = 30; //탄창 용량
     public int magAmmo; //현재 탄창에 있는 탄약수
     public float timeBetFire = 0.12f; //탄알 발사 간격
@@ -29,6 +31,7 @@ public class Gun : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         bulletLineRenderer = GetComponent<LineRenderer>();
         bulletLineRenderer.positionCount = 2;
         bulletLineRenderer.enabled = false;
@@ -43,6 +46,8 @@ public class Gun : MonoBehaviour
 
     private IEnumerator ShotEffect(Vector3 hitPosition)
     {
+        audioSource.clip = ShotSound;
+        audioSource.Play();
         muzzleFlashEffect.Play();
         bulletLineRenderer.enabled = true;
         bulletLineRenderer.SetPosition(0, firePosition.position);
@@ -84,6 +89,10 @@ public class Gun : MonoBehaviour
             {
                 target.OnDamage(damage, hit.point, hit.normal);
             }
+            else
+            {
+                EffectManager.Instance.PlayHitEffect(hit.point, hit.normal, hit.transform);
+            }
             hitPosition = hit.point;
             StartCoroutine(ShotEffect(hitPosition));
         }
@@ -114,14 +123,14 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1"))
-        {
-            Fire();
-        }
+        // if (Input.GetButton("Fire1"))
+        // {
+        //     Fire();
+        // }
 
-        if (Input.GetButton("Reload"))
-        {
-            StartCoroutine(ReloadRoutine());
-        }
+        // if (Input.GetButton("Reload"))
+        // {
+        //     StartCoroutine(ReloadRoutine());
+        // }
     }
 }
