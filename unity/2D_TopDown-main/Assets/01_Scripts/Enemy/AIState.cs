@@ -10,6 +10,11 @@ public class AIState : MonoBehaviour
 
     private EnemyBrain _brain;
 
+    private void Awake()
+    {
+        GetComponentsInChildren<AITransition>(Transitions);
+        GetComponents<AIAction>(Actions);
+    }
     public void SetUp(Transform parentTrm)
     {
         _brain = parentTrm.GetComponent<EnemyBrain>();

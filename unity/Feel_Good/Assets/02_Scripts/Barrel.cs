@@ -28,6 +28,7 @@ public class Barrel : MonoBehaviour, IDamage
 
     public void OnDamage(float damage, Vector3 hitPosition, Vector3 hitNormal)
     {
+        EffectManager.Instance.PlayHitEffect(hitPosition, hitNormal, gameObject.transform, EffectManager.EffecType.Flesh);
         if (++hitCount == 3)
         {
             ExpBarrel();
@@ -51,4 +52,5 @@ public class Barrel : MonoBehaviour, IDamage
         rb.mass = 1;
         rb.AddForce(Vector3.up * 100, ForceMode.Impulse);
     }
+
 }

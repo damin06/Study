@@ -6,8 +6,12 @@ using UnityEngine;
 public class AITransition : MonoBehaviour
 {
     public List<AiDecision> decisions;
-
     public AIState TransitionState;
+
+    private void Awake()
+    {
+        GetComponents<AiDecision>(decisions);
+    }
 
     public void SetUp(Transform parentTrm)
     {

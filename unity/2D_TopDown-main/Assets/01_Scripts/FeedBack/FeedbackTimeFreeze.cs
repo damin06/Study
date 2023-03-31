@@ -12,7 +12,8 @@ public class FeedbackTimeFreeze : FeedBack
 
     public override void CompleteFeedBack()
     {
-        TimeController.Instance?.RestTimeScale();
+        if (TimeController.Instance != null)
+            TimeController.Instance?.RestTimeScale();
     }
 
     public override void CreateFeedBack()

@@ -1,3 +1,2 @@
-﻿  빙고.cpp
-C:\Users\user\Documents\GitHub\Study\C++\Project1\Project1\빙고.cpp(292): warning C4715: 'SelectAinumber': 모든 제어 경로에서 값을 반환하지는 않습니다.
+﻿  복사생성자.cpp
   Project1.vcxproj -> C:\Users\user\Documents\GitHub\Study\C++\Project1\x64\Debug\Project1.exe

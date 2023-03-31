@@ -68,8 +68,13 @@ public class RegularBullet : PoolableMono
 
         if (hit.collider != null)
         {
-            Quaternion rot = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360f)));
+            IDamageable damageable1 = hit.collider.gameObject.GetComponent<IDamageable>();
             damageable?.GetHit(_bulletData.damage, gameObject, hit.point, hit.normal);
+
+            ImpactScript impact = PoolManager.Instance.Pop(_bulletData.impactEnemyPrefab.name) as ImpactScript;
+            Quaternion rot = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360f)));
+            Vector2 randomOffset = Random.insideUnitCircle * 0.5f;
+            impact.SetPositionAndRotation(hit.point + randomOffset, rot);
         }
     }
 

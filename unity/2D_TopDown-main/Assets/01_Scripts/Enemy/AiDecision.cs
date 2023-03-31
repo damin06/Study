@@ -8,14 +8,11 @@ public abstract class AiDecision : MonoBehaviour
     protected AIActionData _actionData;
     protected EnemyBrain _enemyBrain;
 
-    public virtual void SetUp(Transform parent)
-    {
-
-    }
 
     public virtual void Setup(Transform parentTrm)
     {
         _actionData = parentTrm.Find("AI").GetComponent<AIActionData>();
+        _enemyBrain = parentTrm.GetComponent<EnemyBrain>();
     }
 
     public abstract bool MakeDecision();
