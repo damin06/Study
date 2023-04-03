@@ -6,10 +6,12 @@ using static Define;
 
 public class AgentInput : MonoBehaviour, IAgentInput
 {
-    [field : SerializeField] public UnityEvent<Vector2> OnMovementKeyPress { get; set; }
+    [field: SerializeField] public UnityEvent<Vector2> OnMovementKeyPress { get; set; }
     [field: SerializeField] public UnityEvent<Vector2> OnPointerPositionChaged { get; set; }
     [field: SerializeField] public UnityEvent OnFireButtonPress { get; set; }
     [field: SerializeField] public UnityEvent OnFireButtonRelease { get; set; }
+
+    public UnityEvent OnReloadButtonPress;
 
     private bool _fireButtonDown = false;
 
@@ -19,11 +21,12 @@ public class AgentInput : MonoBehaviour, IAgentInput
         GetPointerInput();
 
         GetFireInput();
+        GetReloadInput();
     }
 
     private void GetFireInput()
     {
-        if(Input.GetAxisRaw("Fire1") > 0)
+        if (Input.GetAxisRaw("Fire1") > 0)
         {
             if (_fireButtonDown == false)
             {
@@ -33,7 +36,7 @@ public class AgentInput : MonoBehaviour, IAgentInput
         }
         else
         {
-            if(_fireButtonDown == true)
+            if (_fireButtonDown == true)
             {
                 _fireButtonDown = false;
                 OnFireButtonRelease?.Invoke();
@@ -55,5 +58,13 @@ public class AgentInput : MonoBehaviour, IAgentInput
         float v = Input.GetAxisRaw("Vertical");
 
         OnMovementKeyPress?.Invoke(new Vector2(h, v));
+    }
+
+    private void GetReloadInput()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            OnReloadButtonPress?.Invoke();
+        }
     }
 }
