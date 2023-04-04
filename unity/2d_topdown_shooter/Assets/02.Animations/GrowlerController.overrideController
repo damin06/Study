@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GrowlerController
+  m_Controller: {fileID: 9100000, guid: f1590f86a4594bc40a8ae2561a1eeba5, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 73e64d8ddd0d1a44585df4f9ddaaf447, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2948b2335b70f54428d8b0315c92e45d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8c18eeceb65b8b04aac19ab271f2e9b8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 36023220fd3e53f45bce5a5c0ddd6f35, type: 2}
