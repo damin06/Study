@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Windows.h>
+#include <conio.h>
 using namespace std;
 
 void SoundPlay(int n, bool show)
@@ -55,14 +56,14 @@ void Init()
 	system("PAUSE");
 
 
-	for(int i=1; i<9; i++)
+	for (int i = 1; i < 9; i++)
 	{
 		SoundPlay(i, true);
 	}
 	cout << "\n------------------------------------------" << endl;
-	for(int i=3; i>0; i--)
+	for (int i = 3; i > 0; i--)
 	{
-		for(int j=0; j<4; j++)
+		for (int j = 0; j < 4; j++)
 		{
 			cout << "\b";
 
@@ -76,7 +77,7 @@ void Init()
 int main()
 {
 	int input;
-	string str;
+
 	Init();
 
 	while (true)
@@ -88,15 +89,16 @@ int main()
 		SoundPlay(random, false);
 		system("cls");
 
-		cin >> input;
+		input = _getch() - '0'; // 문자 '0'을 빼주어 숫자로 변환
+		cout << input << endl;
 
-		if(input <= 0 || input > 8)
+		if (input <= 0 || input > 8)
 		{
 			cout << "값이 범위를 초과하였습니다." << endl;
 			continue;
 		}
-		
-		if(random == input)
+
+		if (random == input)
 		{
 			cout << "정답입니다." << endl;
 		}
@@ -104,24 +106,21 @@ int main()
 		{
 			cout << "틀렸습니다." << endl;
 		}
-		
+
 		while (true)
 		{
 			cout << "게임을 그만둘까요? (Y/N)" << endl;
-			cin >> str;
+			char ch = _getch();
 
-			if (str == "N")
+			if (ch == 'N' || ch == 'n')
 			{
 				break;
 			}
-			else if(str == "Y")
+			else if (ch == 'Y' || ch == 'y')
 			{
 				return 0;
 			}
-			else
-			{
-				continue;
-			}
+
 			system("cls");
 		}
 
