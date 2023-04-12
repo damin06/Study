@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9f91f1bf2d8424fb72c59333739fdf, type: 3}
+  m_Name: AmmoPack
+  m_EditorClassIdentifier: 
+  Rate: 0.7
+  ItemPrefab: {fileID: 5196614867525433783, guid: a6c2946fc0355f74d93e1df76c73bc27, type: 3}
+  itemType: 2
+  _minAmount: 10
+  _maxAmount: 15
+  PopupTextColor: {r: 0.8207547, g: 0.3765816, b: 0, a: 1}
+  UseSound: {fileID: 8300000, guid: 1adb6ab7f57563a4a952d8d20f2e415c, type: 3}
