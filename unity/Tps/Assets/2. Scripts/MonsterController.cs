@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 
 public enum State
@@ -23,6 +24,8 @@ public class MonsterController : MonoBehaviour
     public float _attackDist = 2.0f;
     public bool _isDie = false;
 
+    public UnityEvent OnDamageCast;
+
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -31,6 +34,10 @@ public class MonsterController : MonoBehaviour
         StartCoroutine(MonsterAction());
     }
 
+    public void OnAnimationHit()
+    {
+        OnDamageCast?.Invoke();
+    }
 
 
     // Update is called once per frame
