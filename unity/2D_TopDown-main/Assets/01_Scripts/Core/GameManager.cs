@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
             //순차적으로 나오도록 만드는 거지 (이거 다음주까지 한번 만들어봐)
             if (currentTime >= 3f)
             {
+
                 currentTime = 0;
                 int idx = UnityEngine.Random.Range(0, _spawnPointList.Count);
 

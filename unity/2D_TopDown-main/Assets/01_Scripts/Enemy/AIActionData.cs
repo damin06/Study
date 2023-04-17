@@ -6,4 +6,6 @@ public class AIActionData : MonoBehaviour
 {
     public Vector3 hitNormal;
     public Vector3 hitPoint;
+
+    public bool IsAttack; //공격중인가?
 }

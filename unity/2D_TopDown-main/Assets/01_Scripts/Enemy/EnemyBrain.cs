@@ -11,6 +11,8 @@ public class EnemyBrain : PoolableMono
     public UnityEvent<Vector2> OnMovementKeyPress;
     public UnityEvent<Vector2> OnPointerPositionChanged;
 
+    public UnityEvent OnAttackButtonPress = null;
+
     public Transform BasePosition;
 
     public AIState CurrentState;
@@ -68,5 +70,10 @@ public class EnemyBrain : PoolableMono
     public override void Reset()
     {
         _isActive = false;
+    }
+
+    public void Attack()
+    {
+        OnAttackButtonPress?.Invoke();
     }
 }
