@@ -48,4 +48,10 @@ public class EnemyHealth : MonoBehaviour, IDamagerable
     {
         OnDie?.Invoke();
     }
+
+    public void Reset()
+    {
+        _currentHealth = _maxHealth;
+        _isDead = false;
+    }
 }

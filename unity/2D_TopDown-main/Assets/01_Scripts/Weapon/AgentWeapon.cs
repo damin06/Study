@@ -1,3 +1,4 @@
+using System.Dynamic;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,17 @@ public class AgentWeapon : MonoBehaviour
     [SerializeField] private AudioClip _cannotSound = null;
     [SerializeField] private int _maxTotalAmmo = 9999, _totalAmmo = 300;
 
+    public int TotalAmmo
+    {
+        get => _totalAmmo;
+        set
+        {
+            _totalAmmo = value;
+            Mathf.Clamp(_totalAmmo, 0, _maxTotalAmmo);
+            OnChangeTotalAmmo?.Invoke(_weapon.Ammo, _totalAmmo);
+        }
+    }
+
     private AudioSource _audioSource;
     private bool _isReloading = false;
     public bool IsReloading => _isReloading;
@@ -25,7 +37,13 @@ public class AgentWeapon : MonoBehaviour
 
         _audioSource = GetComponent<AudioSource>();
     }
-    #region ¸®·Îµù °ü·Ã ·ÎÁ÷
+
+    protected virtual void Start()
+    {
+        OnChangeTotalAmmo?.Invoke(_weapon.Ammo, _totalAmmo);
+    }
+
+    #region ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void Reload()
     {
         if (_isReloading == false && _totalAmmo > 0 && _weapon.AmmoFull == false)
@@ -44,27 +62,34 @@ public class AgentWeapon : MonoBehaviour
     {
         _reloadUI.gameObject.SetActive(true);
         float time = 0;
-        while(time <= _weapon.WeaponData.reloadTime)
+        while (time <= _weapon.WeaponData.reloadTime)
         {
-            _reloadUI.ReloadGaugeNormal(time/_weapon.WeaponData.reloadTime);
+            _reloadUI.ReloadGaugeNormal(time / _weapon.WeaponData.reloadTime);
             time += Time.deltaTime;
             yield return null;
         }
 
         _reloadUI.gameObject.SetActive(false);
-        if(_weapon.WeaponData.reloadClip != null)
+        if (_weapon.WeaponData.reloadClip != null)
             PlayClip(_weapon.WeaponData.reloadClip);
 
         int reloadedAmmo = Mathf.Min(_totalAmmo, _weapon.EmptyBullet);
         _totalAmmo -= reloadedAmmo;
         _weapon.Ammo += reloadedAmmo;
 
+        OnChangeTotalAmmo?.Invoke(_weapon.Ammo, _totalAmmo); //í˜„ìž¬ ì´ì˜ íƒ„ì°½ìˆ˜ì™€ ë‚´ê°€ ê°€ì§„ íƒ„ì°½ ìˆ˜
+
         _isReloading = false;
+    }
+
+    public void AddAmmo(int count)
+    {
+        TotalAmmo += count;
     }
 
     private void PlayClip(AudioClip clip)
     {
-        _audioSource.Stop(); 
+        _audioSource.Stop();
         _audioSource.clip = clip;
         _audioSource.Play();
     }
@@ -72,22 +97,22 @@ public class AgentWeapon : MonoBehaviour
 
     public virtual void AimWeapon(Vector2 pointerPos)
     {
-        Vector3 aimDirection = (Vector3)pointerPos - transform.position; //¸¶¿ì½º ¹æÇâ º¤ÅÍ ±¸ÇÏ±â
+        Vector3 aimDirection = (Vector3)pointerPos - transform.position; //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 
-        _desireAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg; //µð±×¸® °¢µµ¸¦ ±¸ÇÑ´Ù
+        _desireAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg; //ï¿½ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½
 
         AdjustWeaponRendering();
 
-        transform.rotation = Quaternion.AngleAxis(_desireAngle, Vector3.forward); //zÃà ±âÁØÀ¸·Î È¸Àü
+        transform.rotation = Quaternion.AngleAxis(_desireAngle, Vector3.forward); //zï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
     }
 
 
     private void AdjustWeaponRendering()
     {
-        if(_weaponRenderer != null)
+        if (_weaponRenderer != null)
         {
             _weaponRenderer.FlipSprite(_desireAngle > 90f || _desireAngle < -90f);
-            _weaponRenderer.RendererBehindeHead(_desireAngle > 0 && _desireAngle < 180) ;
+            _weaponRenderer.RendererBehindeHead(_desireAngle > 0 && _desireAngle < 180);
         }
     }
 

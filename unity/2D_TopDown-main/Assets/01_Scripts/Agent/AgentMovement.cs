@@ -21,15 +21,16 @@ public class AgentMovement : MonoBehaviour
 
     public void StopImmdiately()
     {
+        _movementDirection = Vector2.zero;
         _rigid.velocity = Vector2.zero;
         _currentVelocity = 0;
     }
 
     public void MoveAgent(Vector2 movementInput)
     {
-        if(movementInput.sqrMagnitude > 0)
+        if (movementInput.sqrMagnitude > 0)
         {
-            if(Vector2.Dot(movementInput, _movementDirection) < 0)
+            if (Vector2.Dot(movementInput, _movementDirection) < 0)
             {
                 _currentVelocity = 0;
             }
@@ -40,7 +41,7 @@ public class AgentMovement : MonoBehaviour
 
     private float CalcSpeed(Vector2 movementInput)
     {
-        if(movementInput.sqrMagnitude > 0)
+        if (movementInput.sqrMagnitude > 0)
         {
             _currentVelocity += _movementData._acceleration * Time.deltaTime;
         }

@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e936a2b5806b2247a16af748ea7b4c8, type: 3}
-  m_Name: New Item Dorp Table
+  m_Name: CoinTable
   m_EditorClassIdentifier: 
   DropList:
-  - {fileID: 11400000, guid: d91ad13fbd82ffa4198b587311013fb5, type: 2}
-  - {fileID: 11400000, guid: 4c2caf63aea61904fb3e27cf74977e03, type: 2}
+  - {fileID: 11400000, guid: 4180598277b7b074cae78af2e141c093, type: 2}

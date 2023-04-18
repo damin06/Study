@@ -16,16 +16,17 @@ public class Weapon : MonoBehaviour
     public UnityEvent OnShoot;
     public UnityEvent OnShootNoAmmo;
     public UnityEvent OnStopShooting;
+    public UnityEvent<int> OnChangeAmmo = null;
     protected bool _isShooting;
     protected bool _delayCoroutine = false;
 
-    #region AMMO °ü·Ã ÄÚµåµé
+    #region AMMO ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½
     protected int _ammo;
     public int Ammo
     {
         get { return _ammo; }
-        set 
-        { 
+        set
+        {
             _ammo = Mathf.Clamp(value, 0, _weaponDataSO.ammoCapacity);
         }
     }
@@ -45,7 +46,7 @@ public class Weapon : MonoBehaviour
 
     public void UseWeapon()
     {
-        if(_isShooting && _delayCoroutine == false)
+        if (_isShooting && _delayCoroutine == false)
         {
             if (Ammo >= _weaponDataSO.bulletCount)
             {
@@ -54,6 +55,7 @@ public class Weapon : MonoBehaviour
                 {
                     ShootBullet();
                     Ammo--;
+                    OnChangeAmmo?.Invoke(Ammo);
                 }
             }
             else
@@ -69,7 +71,7 @@ public class Weapon : MonoBehaviour
     private void FinishOneShooting()
     {
         StartCoroutine(DelayNextShootCoroutine());
-        if(_weaponDataSO.autoFire == false)
+        if (_weaponDataSO.autoFire == false)
         {
             _isShooting = true;
         }

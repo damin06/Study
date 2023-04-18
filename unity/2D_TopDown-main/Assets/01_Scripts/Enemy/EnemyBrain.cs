@@ -11,6 +11,8 @@ public class EnemyBrain : PoolableMono
     public UnityEvent<Vector2> OnMovementKeyPress;
     public UnityEvent<Vector2> OnPointerPositionChanged;
 
+    public UnityEvent OnResetPool = null;
+
     public UnityEvent OnAttackButtonPress = null;
 
     public Transform BasePosition;
@@ -70,10 +72,23 @@ public class EnemyBrain : PoolableMono
     public override void Reset()
     {
         _isActive = false;
+        _enemyRenederer.Reset();
+
+        OnResetPool?.Invoke();
     }
 
     public void Attack()
     {
         OnAttackButtonPress?.Invoke();
+    }
+
+    public void Dead()
+    {
+        _isActive = false;
+    }
+
+    public void GotoPool()
+    {
+        PoolManager.Instance.Push(this);
     }
 }
