@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
-{ 
+{
     public enum State
     {
         Ready,
@@ -13,21 +13,21 @@ public class Gun : MonoBehaviour
     }
     public State state { get; private set; }
     public Transform firePosition;
-    public ParticleSystem muzzleFlashEffect; //ÃÑ±¸ È­¿°
-    public float bulletLineEffetTime = 0.03f; //¶óÀÎ·»´õ·¯ À¯Áö ½Ã°£
+    public ParticleSystem muzzleFlashEffect; //ï¿½Ñ±ï¿½ È­ï¿½ï¿½
+    public float bulletLineEffetTime = 0.03f; //ï¿½ï¿½ï¿½Î·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 
     private LineRenderer bulletLineRenderer;
     public float damage = 25;
     private float fireDistance = 50f;
-    public int magCapacity = 10; //ÅºÃ¢¿ë·®
-    public int magAmmo;  //ÇöÀç ³²Àº Åº¾Ë
-    public float timeBetFire = 0.12f; //Åº¾Ë ¹ß»ç °£°Ý
-    public float reloadTime = 1.0f; //ÀçÀåÀü ¼Ò¿ä½Ã°£
-    public float lastFireTime; //ÃÑÀ» ¸¶Áö¸·À¸·Î ¹ß»çÇÑ ½Ã°£
+    public int magCapacity = 10; //ÅºÃ¢ï¿½ë·®
+    public int magAmmo;  //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Åºï¿½ï¿½
+    public float timeBetFire = 0.12f; //Åºï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float reloadTime = 1.0f; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¿ï¿½Ã°ï¿½
+    public float lastFireTime; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 
 
-    //¿Àµð¿À ¼Ò½º
-    private AudioSource audioSource; 
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½
+    private AudioSource audioSource;
     public AudioClip shootAudio;
     public AudioClip reloadAudio;
 
@@ -50,12 +50,12 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public bool Fire()
     {
-        //¹ß»ç °¡´ÉÇÑ Á¶°Ç
+        //ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (state == State.Ready && Time.time >= lastFireTime + timeBetFire)
         {
             lastFireTime = Time.time;
@@ -67,23 +67,23 @@ public class Gun : MonoBehaviour
 
     private void Shot()
     {
-        //·¹ÀÌÄ³½ºÆ®
+        //ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Æ®
         RaycastHit hit;
         Vector3 hitPosition = Vector3.zero;
 
-        //½î´Â À§Ä¡, ½î´Â ¹æÇâ, out hit
+        //ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡, ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, out hit
         if (Physics.Raycast(firePosition.position, firePosition.forward, out hit, fireDistance))
         {
             var target = hit.collider.GetComponent<IDamageable>();
-            //ÃÑ¾Ë¿¡ ¸Â¾Ò°í ÇØ´ç Ãæµ¹Ã¼°¡ µ¥¹ÌÁö¸¦ ÀÔÀ» ¼ö ÀÖ´Ù¸é OnDamage¸¦ ÅëÇØ µ¥¹ÌÁö Ã³¸®
+            //ï¿½Ñ¾Ë¿ï¿½ ï¿½Â¾Ò°ï¿½ ï¿½Ø´ï¿½ ï¿½æµ¹Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ OnDamageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
             if (target != null)
             {
                 target.OnDamage(damage, hit.point, hit.normal);
             }
             else
             {
-              //ÃÑ¾Ë¿¡ ¸Â¾ÒÁö¸¸ ÇØ´ç Ãæµ¹Ã¼°¡ µ¥¹ÌÁö¸¦ ÀÔÁö ¾Ê´Â ¹°Ã¼¶ó¸é ¸ÞÅ» È¿°úÁÖ±â
-              EffectManager.Instance.PlayHitEffect(hit.point, hit.normal, hit.transform);
+                //ï¿½Ñ¾Ë¿ï¿½ ï¿½Â¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½æµ¹Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ ï¿½ï¿½Å» È¿ï¿½ï¿½ï¿½Ö±ï¿½
+                EffectManager.Instance.PlayHitEffect(hit.point, hit.normal, hit.transform);
             }
             hitPosition = hit.point;
         }
@@ -115,7 +115,7 @@ public class Gun : MonoBehaviour
 
     public bool Reload()
     {
-        //ÀçÀåÀüÀÌ °¡´ÉÇÏÁö ¾ÊÀº Á¶°Ç(»óÅÂ, Åº¾Ë)
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½, Åºï¿½ï¿½)
         if (state == State.Reloading || magAmmo >= magCapacity)
         {
             return false;

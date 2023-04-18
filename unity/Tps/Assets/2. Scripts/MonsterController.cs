@@ -108,6 +108,8 @@ public class MonsterController : MonoBehaviour
             else
             {
                 _state = State.IDEL;
+                //_agent.ResetPath();
+                //_anim.SetTrigger("Death");
             }
             yield return new WaitForSeconds(0.3f);
         }

@@ -21,5 +21,8 @@ public class EnemyHealth : LivingEntity
     public override void Die()
     {
         base.Die();
+        MonsterController mo = GetComponent<MonsterController>();
+        mo._state = State.DIE;
+        //GetComponent<MonsterController>()._state = 
     }
 }
