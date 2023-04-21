@@ -13,7 +13,7 @@ public enum State
 }
 public class MonsterController : MonoBehaviour
 {
-    [SerializeField] private Transform _playerPos;
+    private Transform _playerPos;
     private NavMeshAgent _agent;
     public State _state = State.IDEL;
     private Animator _anim;
@@ -28,8 +28,9 @@ public class MonsterController : MonoBehaviour
 
     void Start()
     {
+        _playerPos = transform.Find("Player");
         _agent = GetComponent<NavMeshAgent>();
-        StartCoroutine("checkMonsterState");
+        StartCoroutine(checkMonsterState());
         _anim = GetComponent<Animator>();
         StartCoroutine(MonsterAction());
     }
