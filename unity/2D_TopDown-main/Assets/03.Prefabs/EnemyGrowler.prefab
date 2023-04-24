@@ -187,7 +187,7 @@ MonoBehaviour:
   - {x: 0.0046565533, y: -0.42909724, z: 0}
   m_ShapePathHash: 436673419
   m_Mesh: {fileID: 0}
-  m_InstanceId: 59270
+  m_InstanceId: 49096
 --- !u!114 &4836275708116060654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1210,18 +1210,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 582819534}
-        m_TargetAssemblyTypeName: ItemDropper, Assembly-CSharp
-        m_MethodName: DropItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 4836275709940315766}
         m_TargetAssemblyTypeName: EnemyBrain, Assembly-CSharp
         m_MethodName: Dead
@@ -1235,6 +1223,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 582819534}
+        m_TargetAssemblyTypeName: ItemDropper, Assembly-CSharp
+        m_MethodName: DropItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6279152513175293873}
         m_TargetAssemblyTypeName: ItemDropper, Assembly-CSharp
         m_MethodName: DropItem
         m_Mode: 1
@@ -1304,18 +1304,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 4836275709315362698}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 4836275709940315765}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
@@ -1340,10 +1328,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 6279152513175293873}
-        m_TargetAssemblyTypeName: ItemDropper, Assembly-CSharp
-        m_MethodName: DropItem
-        m_Mode: 1
+      - m_Target: {fileID: 4836275709315362698}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1535,4 +1523,4 @@ MonoBehaviour:
   _droTable: {fileID: 11400000, guid: e0988c80885b9624a8abf350f9d6306e, type: 2}
   _dorpEffect: 1
   _dropPwoer: 2
-  _dropChance: 1
+  _dropChance: 0.8

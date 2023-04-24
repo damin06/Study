@@ -9,6 +9,7 @@ public class AITransition : MonoBehaviour
 
     private void Awake()
     {
+        decisions = new List<AIDecision>();
         GetComponents<AIDecision>(decisions);
     }
 
@@ -20,14 +21,14 @@ public class AITransition : MonoBehaviour
     public bool CanTransition()
     {
         bool result = false;
-        foreach(AIDecision d in decisions)
+        foreach (AIDecision d in decisions)
         {
             result = d.MakeADecision();
-            if(d.IsReverse)
+            if (d.IsReverse)
             {
                 result = !result;
             }
-            if(result == false)
+            if (result == false)
             {
                 break;
             }
