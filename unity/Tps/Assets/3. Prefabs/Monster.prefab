@@ -1465,7 +1465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870c6139710dcbc43a7ff20df1f061eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPos: {fileID: 0}
   _state: 0
   _tracetDist: 10
   _attackDist: 2

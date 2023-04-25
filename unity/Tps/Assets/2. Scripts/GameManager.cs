@@ -1,3 +1,5 @@
+using System.Drawing;
+using System.Net.NetworkInformation;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +12,13 @@ public class GameManager : MonoBehaviour
     public GameObject _monster;
     public float _createTime = 2f;
     public int _maxMonster = 10;
+
+    [SerializeField] private PoolListSO initList;
+
+    private void Awake()
+    {
+        CreateMonsterPool();
+    }
 
     void Start()
     {
@@ -24,7 +33,7 @@ public class GameManager : MonoBehaviour
 
         HideCursor(true);
 
-        CreateMonsterPool();
+        CreateMonster();
     }
 
     void HideCursor(bool state)
@@ -48,27 +57,39 @@ public class GameManager : MonoBehaviour
 
     public void CreateMonsterPool()
     {
-        for (int i = 0; i < _maxMonster; i++)
-        {
-            var monster = Instantiate<GameObject>(_monster);
+        // for (int i = 0; i < _maxMonster; i++)
+        // {
+        //     var monster = Instantiate<GameObject>(_monster);
 
-            monster.name = $"Monster_{i:00}";
+        //     monster.name = $"Monster_{i:00}";
 
-            monster.SetActive(false);
+        //     monster.SetActive(false);
 
-            _monsterPool.Add(monster);
-        }
+        //     _monsterPool.Add(monster);
+        // }
+
+        PoolManager.Instance = new PoolManager(transform);
+        initList.Pairs.ForEach(p => PoolManager.Instance.CreatePool(p.Prefab, p.count));
     }
 
     public void CreateMonster()
     {
+        // int idx = Random.Range(0, _points.Count);
+
+        // GameObject _monster = GetMonsterPool();
+
+        // _monster?.transform.SetPositionAndRotation(_points[idx].position, _points[idx].rotation);
+
+        // _monster?.SetActive(true);
+        MonsterController m = PoolManager.Instance.Pop("Monster") as MonsterController;
+
+        Transform spawnPointGroup = GameObject.Find("SpawnPointGroup")?.transform;
+        foreach (Transform poin in spawnPointGroup)
+        {
+            _points.Add(poin);
+        }
         int idx = Random.Range(0, _points.Count);
-
-        GameObject _monster = GetMonsterPool();
-
-        _monster?.transform.SetPositionAndRotation(_points[idx].position, _points[idx].rotation);
-
-        _monster?.SetActive(true);
+        m?.transform.SetPositionAndRotation(_points[idx].position, _points[idx].rotation);
     }
 
     private GameObject GetMonsterPool()
@@ -82,5 +103,14 @@ public class GameManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void CreatePool()
+    {
+        PoolManager.Instance = new PoolManager(transform);
+        initList.Pairs.ForEach(p =>
+        {
+            PoolManager.Instance.CreatePool(p.Prefab, p.count);
+        });
     }
 }

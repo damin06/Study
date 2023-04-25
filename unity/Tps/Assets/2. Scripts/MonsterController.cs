@@ -11,7 +11,7 @@ public enum State
     ATTACK,
     DIE
 }
-public class MonsterController : MonoBehaviour
+public class MonsterController : PoolableMono
 {
     private Transform _playerPos;
     private NavMeshAgent _agent;
@@ -19,14 +19,14 @@ public class MonsterController : MonoBehaviour
     private Animator _anim;
     private readonly int hasTrace = Animator.StringToHash("IsTrace");
     private readonly int hasAttack = Animator.StringToHash("IsAttack");
-
+    private readonly int hasDie = Animator.StringToHash("Death");
     public float _tracetDist = 10.0f;
     public float _attackDist = 2.0f;
     public bool _isDie = false;
 
     public UnityEvent OnDamageCast;
 
-    void Start()
+    void Awake()
     {
         _playerPos = transform.Find("Player");
         _agent = GetComponent<NavMeshAgent>();
@@ -58,7 +58,7 @@ public class MonsterController : MonoBehaviour
     {
         Vector3 bias = transform.forward;
         Vector3 pos = transform.position;
-        pos.y += 1;
+        pos.y += 1.8f;
         for (int i = 0; i < 60; i++)
         {
             Vector3 dir = Quaternion.Euler(0, -i, 0) * bias;
@@ -136,10 +136,31 @@ public class MonsterController : MonoBehaviour
                     _anim.SetBool(hasAttack, true);
                     break;
                 case State.DIE:
+                    _agent.isStopped = true;
+                    _anim.SetTrigger(hasDie);
+
+                    yield return new WaitForSeconds(1f);
+                    PoolManager.Instance.Push(this);
                     break;
             }
             yield return new WaitForSeconds(0.3f);
         }
+    }
+
+    public override void Init()
+    {
+        Debug.Log("체력 세팅");
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(checkMonsterState());
+        StartCoroutine(MonsterAction());
     }
 }
 
