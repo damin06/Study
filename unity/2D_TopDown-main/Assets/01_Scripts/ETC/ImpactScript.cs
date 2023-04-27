@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ImpactScript : PoolableMono
 {
-    private AudioSource _audioSource;
+    protected AudioSource _audioSource;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
     }

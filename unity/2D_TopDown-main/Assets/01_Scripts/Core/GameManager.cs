@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private PollingListSO _poolingList;
+    [SerializeField] private SpanwListSO _spawnList;
+    private float[] _spawnWeights;
 
     [SerializeField] private Transform _SpawnPointParent;
     [SerializeField] private Transform _playerTrm;
@@ -34,6 +36,8 @@ public class GameManager : MonoBehaviour
         _spawnPointList = new List<Transform>();
         _SpawnPointParent.GetComponentsInChildren<Transform>(_spawnPointList);
         _spawnPointList.RemoveAt(0);
+
+        //_spawnWeights = _spawnList._spawnPair.select()
     }
 
     private void MakePool()
@@ -64,7 +68,9 @@ public class GameManager : MonoBehaviour
                 int cnt = Random.Range(2, 5);
                 for (int i = 0; i < cnt; i++)
                 {
-                    EnemyBrain enemy = PoolManager.Instance.Pop("EnemyGrowler") as EnemyBrain;
+                    int sIndex = GetRandomSpawnIndex();
+
+                    EnemyBrain enemy = PoolManager.Instance.Pop(_spawnList._spawnPair[sIndex].ToString()) as EnemyBrain;
                     Vector2 positionOffseot = Random.insideUnitCircle * 2;
 
                     enemy.transform.position = _spawnPointList[idx].position + (Vector3)positionOffseot;
@@ -76,5 +82,30 @@ public class GameManager : MonoBehaviour
             }
             yield return null;
         }
+    }
+
+    private int GetRandomSpawnIndex()
+    {
+        float sum = 0f;
+        for (int i = 0; i < _spawnWeights.Length; i++)
+        {
+            sum += _spawnWeights[i];
+        }
+
+        float randomValue = Random.Range(0f, sum);
+        float tempSum = 0;
+
+        for (int i = 0; i < _spawnWeights.Length; i++)
+        {
+            if (randomValue >= tempSum && randomValue < tempSum + _spawnWeights[i])
+            {
+                return i;
+            }
+            else
+            {
+                tempSum += +_spawnWeights[i];
+            }
+        }
+        return 0;
     }
 }

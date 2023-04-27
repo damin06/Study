@@ -29,7 +29,7 @@ public class EnemyRenderer : AgentRenderer
 
         _effectScript = PoolManager.Instance.Pop("DustEffect") as EffectScripts;
         _effectScript.transform.position = transform.position + _offset;
-        _effectScript.PlayEffect();
+        _effectScript.PlayEffect(1);
 
         transform.localPosition = _offset;
         float currentRate = 1f;

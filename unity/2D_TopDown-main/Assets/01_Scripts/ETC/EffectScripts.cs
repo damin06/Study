@@ -20,10 +20,17 @@ public class EffectScripts : PoolableMono
         _light.enabled = false;
     }
 
-    public void PlayEffect()
+    public void PlayEffect(float time)
     {
         _particleEffect.Play();
         _light.enabled = true;
+        StartCoroutine(StopDelay(time));
+    }
+
+    private IEnumerator StopDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        stopEffect();
     }
 
     public void stopEffect()

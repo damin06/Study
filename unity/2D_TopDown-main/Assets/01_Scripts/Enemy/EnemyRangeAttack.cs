@@ -49,7 +49,7 @@ public class EnemyRangeAttack : EnemyAttack
         {
             _lastFireTime = Time.time;
             _actionData.IsAttack = false;
-            _currentFireBall.Fire(_currentFireBall.transform.right * 5f);
+            _currentFireBall.Fire(_currentFireBall.transform.right);
 
             _currentFireBall = null;
         });
@@ -59,7 +59,7 @@ public class EnemyRangeAttack : EnemyAttack
     {
         if (_currentFireBall == null) return;
 
-        Vector3 direction = (Vector3)pointerInput - transform.position;
+        Vector3 direction = (Vector3)pointerInput - _currentFireBall.transform.position;
 
         float angle = MathF.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         _currentFireBall.transform.rotation = Quaternion.Euler(0, 0, angle);
