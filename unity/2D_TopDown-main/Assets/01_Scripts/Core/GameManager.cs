@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         _SpawnPointParent.GetComponentsInChildren<Transform>(_spawnPointList);
         _spawnPointList.RemoveAt(0);
 
-        //_spawnWeights = _spawnList._spawnPair.select()
+        //_spawnWeights = _spawnList._spawnPair.Select(s => s.spawnPercent).ToArray();
     }
 
     private void MakePool()
