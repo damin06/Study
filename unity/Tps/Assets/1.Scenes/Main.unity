@@ -388,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: f3cd25b3bf53c4adaaf087d862e435e6, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: f3cd25b3bf53c4adaaf087d862e435e6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -716,7 +716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4182835163584202, guid: 4229c84aca58549a586e9bb7aaae97c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.489
+      value: -0.969
       objectReference: {fileID: 0}
     - target: {fileID: 4182835163584202, guid: 4229c84aca58549a586e9bb7aaae97c4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -724,7 +724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4182835163584202, guid: 4229c84aca58549a586e9bb7aaae97c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.166
+      value: 0.739
       objectReference: {fileID: 0}
     - target: {fileID: 4182835163584202, guid: 4229c84aca58549a586e9bb7aaae97c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1690,7 +1690,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!4 &738271180 stripped
 Transform:
@@ -4093,8 +4093,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baf1c4fe1ad78824c9b985496d56124f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
-  playerTransform: {fileID: 0}
+  items:
+  - {fileID: 1676094191218838, guid: 4229c84aca58549a586e9bb7aaae97c4, type: 3}
+  - {fileID: 1838412652947266, guid: b4e7df10a580e4a1a88a79995b741816, type: 3}
+  playerTransform: {fileID: 665974726}
   maxDistance: 5
   timeBetSpawnMax: 7
   timeBetSpawnMin: 2
