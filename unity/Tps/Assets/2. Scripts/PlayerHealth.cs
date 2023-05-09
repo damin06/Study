@@ -18,4 +18,18 @@ public class PlayerHealth : LivingEntity
         yield return new WaitForSeconds(1f);
 
     }
+
+    private void OnTrigerEnter2D(Collider other)
+    {
+        if (dead)
+            return;
+
+        Iitem item = other.GetComponent<Iitem>();
+
+        if (item == null)
+            return;
+
+        item.use(gameObject);
+        Debug.Log("냠냠");
+    }
 }
