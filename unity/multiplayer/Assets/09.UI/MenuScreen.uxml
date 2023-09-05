@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/Common.uss?fileID=7433441132597879392&amp;guid=3ee2b0fd90f921d439c5a64449aa0c02&amp;type=3#Common" />
+    <Style src="project://database/Assets/09.UI/MenuScreen.uss?fileID=7433441132597879392&amp;guid=e1381e27098a1a94daac0d2e26ba0faa&amp;type=3#MenuScreen" />
+    <ui:VisualElement name="container" style="flex-grow: 1;">
+        <ui:VisualElement name="menu-box">
+            <ui:VisualElement name="menu-row" class="menu-row" style="flex-grow: 1;">
+                <ui:TextField picking-mode="Ignore" value="127.0.0.1" name="txt-ip-address" style="flex-basis: 300px; flex-grow: 1;" />
+                <ui:TextField picking-mode="Ignore" value="7700" name="txt-port" style="flex-basis: 80px;" />
+                <ui:Button text="Host" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn-local-host" class="btn" />
+                <ui:Button text="Client" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn-local-client" class="btn" />
+            </ui:VisualElement>
+            <ui:VisualElement name="menu-row" class="menu-row" style="flex-grow: 1;">
+                <ui:Button text="Relay Host" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn-relay-host" class="btn" />
+            </ui:VisualElement>
+            <ui:VisualElement name="menu-row" class="menu-row" style="flex-grow: 1;">
+                <ui:Button text="Lobby" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn-lobby" class="btn" />
+            </ui:VisualElement>
+            <ui:VisualElement name="menu-row" class="menu-row" style="flex-grow: 1;">
+                <ui:TextField picking-mode="Ignore" value="Join code here!" name="txt-joincode" style="flex-grow: 1;" />
+                <ui:Button text="Lobby" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn-joincode" class="btn" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="popup-panel" style="flex-grow: 1; background-color: rgba(96, 96, 96, 0.66);">
+        <ui:VisualElement name="lobby-frame" style="background-color: rgba(0, 0, 0, 0);">
+            <ui:ScrollView name="lobby-container" />
+            <ui:Button display-tooltip-when-elided="true" name="btn-close" />
+            <ui:VisualElement name="btn-row" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row-reverse;">
+                <ui:Button text="Refresh" display-tooltip-when-elided="true" name="btn-refresh" style="font-size: 30px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
