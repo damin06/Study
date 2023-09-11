@@ -15,6 +15,11 @@ public class NetworkServer
 
     private void ApprovalCheck(NetworkManager.ConnectionApprovalRequest req, NetworkManager.ConnectionApprovalResponse res)
     {
-        
+        UserData data = new UserData();
+        data.Deserialize(req.Payload);
+
+        Debug.Log(data.username);
+
+        res.Approved = true;
     }
 }
