@@ -1,0 +1,104 @@
+#container {
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#menu-box {
+    flex-basis: 700px;
+}
+
+.menu-row {
+    flex-direction: row;
+    flex-basis: 65px;
+    margin-bottom: 10px;
+}
+
+.menu-row > * {
+    font-size: 24px;
+}
+
+#popup-panel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(84, 84, 84, 0.72);
+    transition-duration: 0.5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#popup-panel.on {
+    opacity: 1;
+    visibility: visible;
+}
+
+#lobby-frame {
+    background-image: url('project://database/Assets/04.Sprites/Frame_Border.png?fileID=2800000&guid=cee07c87981168b46a6778604009d1d2&type=3#Frame_Border');
+    -unity-slice-left: 55;
+    -unity-slice-top: 55;
+    -unity-slice-right: 55;
+    -unity-slice-bottom: 55;
+    width: 900px;
+    min-height: 80px;
+    -unity-slice-scale: 0.4px;
+    padding-top: 30px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+#btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    translate: 50% -50%;
+    background-image: url('project://database/Assets/04.Sprites/Quit_Button.png?fileID=2800000&guid=d503b9a52ce751845bbb9d60aa7eb340&type=3#Quit_Button');
+    width: 50px;
+    height: 50px;
+}
+
+#lobby-container {
+    height: 700px;
+}
+
+#lobby-template {
+    background-image: url('project://database/Assets/04.Sprites/Frame_Border.png?fileID=2800000&guid=cee07c87981168b46a6778604009d1d2&type=3#Frame_Border');
+    -unity-slice-left: 55;
+    -unity-slice-top: 55;
+    -unity-slice-right: 55;
+    -unity-slice-bottom: 55;
+    -unity-slice-scale: 0.2px;
+    flex-direction: row;
+    height: 70px;
+    align-items: center;
+    padding-right: 15px;
+    padding-left: 15px;
+    justify-content: space-between;
+}
+
+#lobby-template > #room-name {
+    flex-basis: 70%;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+}
+
+#lobby-template > #room-count {
+    font-size: 20px;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+}
+
+#lobby-template > #btn-join-lobby {
+    font-size: 20px;
+    flex-grow: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

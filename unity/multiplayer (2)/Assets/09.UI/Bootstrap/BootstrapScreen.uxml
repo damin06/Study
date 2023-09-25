@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/Common.uss?fileID=7433441132597879392&amp;guid=3ee2b0fd90f921d439c5a64449aa0c02&amp;type=3#Common" />
+    <ui:VisualElement name="container" style="flex-grow: 1; justify-content: center; align-items: center; flex-direction: row;">
+        <ui:VisualElement name="input-panel" style="width: 600px;">
+            <ui:Label tabindex="-1" text="Input your name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="info-label" style="font-size: 60px; -unity-text-align: upper-center; color: rgb(255, 255, 255); -unity-font-style: bold; -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0); margin-bottom: 15px;" />
+            <ui:TextField picking-mode="Ignore" name="name-text-field" style="font-size: 35px; margin-bottom: 15px;" />
+            <ui:Button text="Connect to Server" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn-connect" class="btn" style="padding-top: 10px; padding-bottom: 10px; font-size: 30px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
