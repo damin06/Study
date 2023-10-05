@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
+using DG.Tweening;
 
 public class HealingZone : NetworkBehaviour
 {
@@ -54,7 +56,7 @@ public class HealingZone : NetworkBehaviour
 
         if(collision.attachedRigidbody.TryGetComponent<TankPlayer>(out TankPlayer tank))
         {
-            Debug.Log(tank.transform.name);
+            Debug.Log($"Enter : {tank.playerName.Value}");
             _playersInZone.Add(tank);
         }
 
@@ -62,11 +64,62 @@ public class HealingZone : NetworkBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        if (!IsServer) return;
+        if (collision.attachedRigidbody.TryGetComponent<TankPlayer>(out TankPlayer player))
+        {
+            _playersInZone.Remove(player);
+            Debug.Log($"Exit : {player.playerName.Value}");
+        }
     }
 
     private void Update()
     {
-        
+        if (!IsServer) return;
+
+        if (_remainCooldown > 0)
+        {
+            _remainCooldown -= Time.deltaTime;
+            if (_remainCooldown < 0)
+            {
+                _healPower.Value = _maxHealPower;
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        //여기에 왔다는건 힐파워가 존재한다. 
+
+        _tickTimer += Time.deltaTime;
+        if (_tickTimer >= _healTickRate)  //힐이 들어갈 틱이 되었어
+        {
+            foreach (var player in _playersInZone)
+            {
+                if (player.HealthCompo.currentHealth.Value == player.HealthCompo.MaxHealth) continue;
+                if (player.Coin.totalCoins.Value < _coinPerTick) continue;
+
+                player.Coin.SpendCoin(_coinPerTick);
+                player.HealthCompo.RestoreHealth(_healPerTick);
+
+                _healPower.Value --;
+                if (_healPower.Value <= 0)
+                {
+                    ReloadClientRpc();
+                    _remainCooldown = _cooldown;
+                    break;
+                }
+            }
+
+            _tickTimer = _tickTimer % _healTickRate;
+        }
+    }
+
+    [ClientRpc]
+    public void ReloadClientRpc()
+    {
+        SpriteRenderer sp = GetComponent<SpriteRenderer>();
+        sp.color = new Color(0,0,0,0);
+        sp.DOFade(1, _cooldown);
     }
 }

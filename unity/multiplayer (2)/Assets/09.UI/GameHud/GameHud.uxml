@@ -5,5 +5,12 @@
         <ui:VisualElement name="leaderboard-container" style="flex-grow: 1;">
             <ui:Instance template="Leaderboard" name="Leaderboard" />
         </ui:VisualElement>
+        <ui:VisualElement name="minimap-container" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement name="back-radar" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+            <ui:VisualElement name="minimap" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+            <ui:VisualElement name="msg-container" style="background-color: rgba(0, 0, 0, 0); top: -605px; left: -675px;">
+                <ui:Label tabindex="-1" text="복쪽에서 10초루 코인 23개가 생성됩니다." display-tooltip-when-elided="true" name="msg-label" focusable="false" class="off" />
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

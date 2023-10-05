@@ -21,6 +21,7 @@ public class CoinCollector : NetworkBehaviour
 
             if (!IsServer) return;
             totalCoins.Value += value;
+            UIManager.Instance.PopupText(value.ToString(), transform.position, Color.yellow);
         }
     }
 
@@ -52,5 +53,11 @@ public class CoinCollector : NetworkBehaviour
         coinInstance.NetworkObject.Spawn();
 
         coinInstance.setCoinToVisible(coinScale);
+    }
+
+
+    public void SpendCoin(int value)
+    {
+        totalCoins.Value -= value;
     }
 }

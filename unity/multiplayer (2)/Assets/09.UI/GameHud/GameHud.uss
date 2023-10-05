@@ -7,3 +7,50 @@
     top: 10px;
     right: 10px;
 }
+
+#minimap-container {
+    bottom: 10px;
+    right: 10px;
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    background-image: url('project://database/Assets/04.Sprites/Frame_Border.png?fileID=2800000&guid=cee07c87981168b46a6778604009d1d2&type=3#Frame_Border');
+    -unity-slice-scale: 0.5px;
+    -unity-slice-left: 30;
+    -unity-slice-top: 30;
+    -unity-slice-right: 30;
+    -unity-slice-bottom: 30;
+}
+
+#back-radar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('project://database/Assets/04.Sprites/Radar.png?fileID=2800000&guid=16b74084c63f08f48874c991a63bf571&type=3#Radar');
+}
+
+#minimap {
+    background-image: url('project://database/Assets/04.Sprites/RenderTexture/MiniMapTexture.renderTexture?fileID=8400000&guid=8965d4ec64632f84dabab5df2a2f4bda&type=2#MiniMapTexture');
+}
+
+#msg-container {
+    left: 50%;
+    top: 150%;
+    translate: -50% 0;
+    position: absolute;
+    transition-property: top;
+    transition-duration: 0.5s;
+}
+
+#msg-label {
+    -unity-font-style: bold;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+}
+
+#msg-container.off {
+    top: -150%;
+}

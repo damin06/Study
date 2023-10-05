@@ -44,6 +44,21 @@ public class Health : NetworkBehaviour
     private void HandleChangeHealth(int prev, int newValue)
     {
         OnHealthChanged?.Invoke(prev, newValue, (float)newValue / MaxHealth);
+
+        int delta = newValue - prev;
+        int value = Mathf.Abs(delta);
+
+        if (value == MaxHealth) return;
+
+        if(delta < 0) 
+        {
+            UIManager.Instance.PopupText(value.ToString(), transform.position, Color.red);
+        }
+        else
+        {
+            UIManager.Instance.PopupText(value.ToString(), transform.position, Color.green);
+        }
+
     }
 
     public void TakeDamage(int damage)

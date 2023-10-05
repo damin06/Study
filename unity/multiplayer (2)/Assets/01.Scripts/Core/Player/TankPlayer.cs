@@ -7,12 +7,14 @@ using UnityEngine;
 public class TankPlayer : NetworkBehaviour
 {
     [Header("참조변수")]
+    [SerializeField] private SpriteRenderer _minimapIcon;
     [SerializeField] private CinemachineVirtualCamera _followCam;
     [field:SerializeField] public Health HealthCompo { get; private set;}
     [field:SerializeField] public CoinCollector Coin { get; private set;}
 
     [Header("셋팅값")]
     [SerializeField] private int _ownerCamPriority;
+    [SerializeField] private Color _ownerColor;
 
     //32바이트 utf8기준 한글 => 3바이트  10글자 
     public NetworkVariable<FixedString32Bytes> playerName = new NetworkVariable<FixedString32Bytes>();
@@ -22,6 +24,7 @@ public class TankPlayer : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        SpriteRenderer sp = GameObject.Find("TankIcon").GetComponent<SpriteRenderer>(); 
         if(IsServer)  //나는 NetworkServer가 있을거다.
         {
             //OwnerClientId
@@ -36,6 +39,7 @@ public class TankPlayer : NetworkBehaviour
 
         if (IsOwner)
         {
+            _minimapIcon.color = _ownerColor;
             _followCam.Priority = _ownerCamPriority;
         }
     }
