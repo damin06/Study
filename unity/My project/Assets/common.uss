@@ -1,0 +1,10 @@
+.nps-font {
+    -unity-font: url('project://database/Assets/04.Sprites/SOYO_maple_font/_%EC%86%8C%EC%9A%94%EB%8B%A8%ED%92%8D%EC%B2%B4%20OTF/SOYO%20Maple%20Regular.otf?fileID=12800000&guid=4be1d8efe2e8d114099143debd357c91&type=3#SOYO Maple Regular');
+    -unity-font-definition: initial;
+    -unity-font-style: bold;
+    font-size: 35px;
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgba(0, 0, 0, 0.38);
+    -unity-text-align: middle-center;
+}

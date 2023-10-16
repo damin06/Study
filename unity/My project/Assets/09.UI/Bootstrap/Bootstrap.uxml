@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/Bootstrap/Bootstrap.uss?fileID=7433441132597879392&amp;guid=f182585f5c3522b499694b4b6d648bc0&amp;type=3#Bootstrap" />
+    <Style src="project://database/Assets/common.uss?fileID=7433441132597879392&amp;guid=75af0f0118589904ab00181112185b9a&amp;type=3#common" />
+    <ui:VisualElement name="container" class="container" style="background-color: rgba(0, 0, 0, 0);">
+        <ui:Label tabindex="-1" text="Loading Asset" display-tooltip-when-elided="true" name="loading-title" class="nps-font" style="font-size: 90px;" />
+        <ui:Label tabindex="-1" text="ready for network..." display-tooltip-when-elided="true" name="loading-descl" class="nps-font" />
+    </ui:VisualElement>
+</ui:UXML>

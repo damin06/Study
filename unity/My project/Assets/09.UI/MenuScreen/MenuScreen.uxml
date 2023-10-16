@@ -1,0 +1,35 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/MenuScreen/MenuScreen.uss?fileID=7433441132597879392&amp;guid=41939790f1c2e1c4db724e9e72bb376e&amp;type=3#MenuScreen" />
+    <Style src="project://database/Assets/common.uss?fileID=7433441132597879392&amp;guid=75af0f0118589904ab00181112185b9a&amp;type=3#common" />
+    <ui:VisualElement name="container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement name="screen-container" class="screen-container" style="background-color: rgba(226, 226, 226, 0.76);">
+            <ui:VisualElement name="content" class="content">
+                <ui:VisualElement name="page-one" class="page" style="background-color: rgb(84, 0, 255);">
+                    <ui:VisualElement name="create-lobby" style="background-color: rgb(202, 202, 202); width: 80%; height: 200px; border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); padding-left: 25px; padding-right: 25px; padding-top: 15px; padding-bottom: 15px;">
+                        <ui:TextField picking-mode="Ignore" value="방 이름을 입력하세요." name="text-lobbyname" class="nps-font name-text" />
+                        <ui:Button text="만들기" display-tooltip-when-elided="true" name="btn-create" focusable="true" class="block-btn nps-font" style="border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="page-two" class="page" style="background-color: rgb(211, 0, 255);" />
+                <ui:VisualElement name="page-three" class="page" style="background-color: rgb(10, 255, 0);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="tap-container" class="tap-container">
+            <DataVisualElement panel-index="0" name="button-one" class="tap-button" style="flex-basis: 30%;">
+                <ui:VisualElement name="icon" picking-mode="Ignore" class="icon" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/04.Sprites/Icons/icon_37.png?fileID=21300000&amp;guid=dfdc0888f4c7afa428396da108a800e7&amp;type=3#icon_37&apos;);" />
+            </DataVisualElement>
+            <DataVisualElement panel-index="1" name="button-two" class="tap-button" style="flex-basis: 30%;">
+                <ui:VisualElement name="icon" picking-mode="Ignore" class="icon" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/04.Sprites/Icons/icon_89.png?fileID=21300000&amp;guid=465460778f10fdf43ba5dad7559fd28e&amp;type=3#icon_89&apos;);" />
+            </DataVisualElement>
+            <DataVisualElement panel-index="2" name="button-three" class="tap-button" style="flex-basis: 30%;">
+                <ui:VisualElement name="icon" picking-mode="Ignore" class="icon" style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/04.Sprites/Icons/icon_93.png?fileID=21300000&amp;guid=21df40527646ac843a58aac9869fcb94&amp;type=3#icon_93&apos;);" />
+            </DataVisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="popup-panel" class="popup-panel off" style="background-color: rgba(0, 0, 0, 0.73); position: absolute; left: -1px; top: 0; width: 100%; height: 100%; align-items: center; justify-content: center;">
+            <ui:VisualElement name="inner-input" style="background-color: rgb(255, 255, 255); width: 80%; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; padding-top: 15px; padding-bottom: 15px; padding-right: 25px; padding-left: 25px;">
+                <ui:TextField picking-mode="Ignore" value="이름을 입력하세요" name="name-text" class="nps-font name-text" style="font-size: 50px; -unity-text-outline-color: rgb(0, 0, 0);" />
+                <ui:Button text="확인" display-tooltip-when-elided="true" name="btn-ok" class="nps-font block-btn" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Services.Core;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ApplicationController : MonoBehaviour
 {
@@ -39,9 +40,11 @@ public class ApplicationController : MonoBehaviour
 
         HostSingleton host = Instantiate(_hostPrefab, transform);
         host.CreateHost(_playerPrefab);
-        ClientSingnleton client = Instantiate(_clientPrefab, transform);
 
-        
+        ClientSingnleton client = Instantiate(_clientPrefab, transform);
+        client.CreateClient();
+
+        SceneManager.LoadScene(SceneList.MenuScene);
     }
 
     private void HandleAuthMessage(string msg)

@@ -1,0 +1,81 @@
+.container {
+    flex-grow: 1;
+}
+
+.tap-container {
+    background-color: rgb(0, 24, 120);
+    flex-basis: 300px;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+.screen-container {
+    background-color: rgba(226, 226, 226, 0.75);
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.content {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0);
+    flex-direction: row;
+    width: 300%;
+    transition-property: left;
+    transition-duration: 0.3s;
+}
+
+.page {
+    width: 33.33%;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.tap-button {
+    background-color: rgb(255, 255, 255);
+    flex-basis: 28%;
+    border-top-left-radius: 20%;
+    border-bottom-left-radius: 20%;
+    border-top-right-radius: 20%;
+    border-bottom-right-radius: 20%;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    width: 60%;
+    height: 60%;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.popup-panel {
+    transition-duration: 0.3s;
+}
+
+.name-text {
+    margin-bottom: 20px;
+}
+
+.name-text > #unity-text-input {
+    background-color: rgba(255, 255, 255, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 2px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}
+
+.popup-panel.off {
+    opacity: 0;
+    margin-left: 100%;
+}
+
+.block-btn {
+    background-color: rgb(85, 148, 255);
+    font-size: 45px;
+}
