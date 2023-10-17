@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
+using Unity.Services.Lobbies;
+using Unity.Services.Lobbies.Models;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class HostGameManager : IDisposable
@@ -39,6 +40,17 @@ public class HostGameManager : IDisposable
             var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
             var relayServerData = new RelayServerData(_allocation, "dtls");
             transport.SetRelayServerData(relayServerData);
+
+            CreateLobbyOptions lobbyOptions = new CreateLobbyOptions();
+            lobbyOptions.Data = new Dictionary<string, DataObject>()
+            {
+                {
+                    "JoinCode", new DataObject(visibility: DataObject.VisibilityOptions.Member, value: _joinCode)
+                }
+            };
+            Lobby lobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, _maxConnections, lobbyOptions);
+            _lobbyId = lobby.Id;
+            HostSingleton.Instance.StartCoroutine(HeartBeateLobby(15));
 
             NetServer = new NetworkServer(NetworkManager.Singleton, _playerPrefab);
            NetServer.OnClientJoin += HandleClientJoin;
@@ -75,9 +87,35 @@ public class HostGameManager : IDisposable
 
     public async void ShutdownAsync()
     {
+        if(string.IsNullOrEmpty(_lobbyId))
+        {
+            if(HostSingleton.Instance != null)
+            {
+                HostSingleton.Instance.StopCoroutine(nameof(HeartBeateLobby));
+            }
+
+            try
+            {
+                await Lobbies.Instance.DeleteLobbyAsync(_lobbyId);
+            }catch(LobbyServiceException ex)
+            {
+                Debug.LogError(ex);
+            }
+        }
+
         NetServer.OnClientLeft -= HandleClientLeft; 
         NetServer.OnClientJoin -= HandleClientJoin;
         _lobbyId = string.Empty;
         NetServer?.Dispose();
+    }
+
+    private IEnumerator HeartBeateLobby(float time)
+    {
+        var tiemr = new WaitForSecondsRealtime(time);
+        while(true)
+        {
+            Lobbies.Instance.SendHeartbeatPingAsync(_lobbyId);
+            yield return tiemr;
+        }
     }
 }

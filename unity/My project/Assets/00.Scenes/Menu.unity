@@ -403,3 +403,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d292e9f21b6b1b4babbe971eca9b378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _createPanelAsset: {fileID: 9197481963319205126, guid: 0e52ae6d6cd11974ea3500820047b93f, type: 3}
+  _lobbyPanelAsset: {fileID: 9197481963319205126, guid: 4d48670b976be7e438917b93a6a5fb6c, type: 3}

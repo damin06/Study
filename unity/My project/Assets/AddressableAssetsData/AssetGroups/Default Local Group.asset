@@ -22,6 +22,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 318ca9c242a3c594b851f76a610e0b16
+    m_Address: Assets/09.UI/MenuScreen/Panels/LobbyTemplate.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3093c99ea7a740b4ebec523853421992, type: 2}
   m_SchemaSet:

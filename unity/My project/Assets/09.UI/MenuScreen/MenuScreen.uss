@@ -79,3 +79,8 @@
     background-color: rgb(85, 148, 255);
     font-size: 45px;
 }
+
+.page > .panel {
+    height: 100%;
+    width: 100%;
+}

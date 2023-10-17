@@ -3,13 +3,8 @@
     <Style src="project://database/Assets/common.uss?fileID=7433441132597879392&amp;guid=75af0f0118589904ab00181112185b9a&amp;type=3#common" />
     <ui:VisualElement name="container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
         <ui:VisualElement name="screen-container" class="screen-container" style="background-color: rgba(226, 226, 226, 0.76);">
-            <ui:VisualElement name="content" class="content">
-                <ui:VisualElement name="page-one" class="page" style="background-color: rgb(84, 0, 255);">
-                    <ui:VisualElement name="create-lobby" style="background-color: rgb(202, 202, 202); width: 80%; height: 200px; border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); padding-left: 25px; padding-right: 25px; padding-top: 15px; padding-bottom: 15px;">
-                        <ui:TextField picking-mode="Ignore" value="방 이름을 입력하세요." name="text-lobbyname" class="nps-font name-text" />
-                        <ui:Button text="만들기" display-tooltip-when-elided="true" name="btn-create" focusable="true" class="block-btn nps-font" style="border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
+            <ui:VisualElement name="content" class="content" style="left: -100%;">
+                <ui:VisualElement name="page-one" class="page" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
                 <ui:VisualElement name="page-two" class="page" style="background-color: rgb(211, 0, 255);" />
                 <ui:VisualElement name="page-three" class="page" style="background-color: rgb(10, 255, 0);" />
             </ui:VisualElement>

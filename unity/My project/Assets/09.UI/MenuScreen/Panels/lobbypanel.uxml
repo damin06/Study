@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="lobby-panel" style="background-color: rgba(0, 0, 0, 0); align-items: center; justify-content: center; flex-grow: 1;">
+        <ui:VisualElement name="inner-box" style="background-color: rgba(0, 0, 0, 0); width: 80%; height: 75%;">
+            <ui:Label tabindex="-1" text="게임로비" display-tooltip-when-elided="true" name="title-label" class="nps-font" style="font-size: 50px;" />
+            <ui:ScrollView name="lobby-scroll" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/04.Sprites/Frame_Border.png?fileID=21300000&amp;guid=74485c9b6aa4d2a4b812046017b43bcf&amp;type=3#Frame_Border&apos;); -unity-slice-left: 55; -unity-slice-top: 55; -unity-slice-right: 55; -unity-slice-bottom: 55; -unity-slice-scale: 0.6px; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px;" />
+            <ui:Button text="새로고침" display-tooltip-when-elided="true" name="btn-refresh" class="block-btn nps-font" style="background-color: rgb(136, 0, 255); margin-bottom: 25px; margin-top: 25px;" />
+            <ui:Label tabindex="-1" text="참여를 원하는 로비를 선택하세요." display-tooltip-when-elided="true" name="status-label" class="nps-font" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
