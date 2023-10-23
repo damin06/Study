@@ -25,6 +25,6 @@ public class CreatePanel
 
     public void SetStatusText(string text)
     {
-
+        _statusLabel.text = text;
     }
 }

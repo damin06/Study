@@ -1,5 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Authentication;
+using Unity.Services.Lobbies;
+using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,6 +15,11 @@ public class LobbyPanel
     private ScrollView _lobbyView;
     private VisualTreeAsset _lobbyAsset;
 
+    public Label StatusLabel => _statusLabel;
+    public event Action<Lobby> JoinLoobbyBtnEvent;
+
+    private bool _isJoining = false;
+
     public LobbyPanel(VisualElement root, VisualTreeAsset lobbyAsset)
     {
         _root = root;
@@ -21,14 +30,20 @@ public class LobbyPanel
         root.Q<Button>("btn-refresh").RegisterCallback<ClickEvent>(HandleRefreshButnClick);
     }
 
-    private async void HandleRefreshButnClick(ClickEvent evt)
+    private void HandleRefreshButnClick(ClickEvent evt)
+    {
+        Refesh();
+    }
+
+    public async void Refesh()
     {
         if (_isLobbyRefresh) return;
 
         _isLobbyRefresh = true;
         var list = await ApplicationController.Instance.GetLobbyList();
+        _lobbyView.Clear();
 
-        foreach(var lobby in list)
+        foreach (var lobby in list)
         {
             var lobbyTemplate = _lobbyAsset.Instantiate();
 
@@ -37,13 +52,18 @@ public class LobbyPanel
             lobbyTemplate.Q<Label>("lobby-name").text = lobby.Name;
             lobbyTemplate.Q<Button>("btn-join").RegisterCallback<ClickEvent>(evt =>
             {
-                //try
-                //{
-
-                //}
+                //JoinLoobbyBtnEvent?.Invoke(lobbyTemplate);
+                //JoinToLobby(lobby);   
             });
         }
 
         _isLobbyRefresh = false;
+    }
+
+   
+
+    public void SetStatusText(string text)
+    {
+        _statusLabel.text = text;
     }
 }

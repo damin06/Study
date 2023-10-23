@@ -72,6 +72,20 @@ public class ApplicationController : MonoBehaviour
         return await HostSingleton.Instance.GameManager.StartHostAsync(lobbyName, userData);
     }
 
+    public async Task StartClientAsync(string username, string joinCode)
+    {
+        await ClientSingnleton.Instance.GameManager.StartClientAsync(joinCode, GetUserData(username));
+    }
+
+    private UserData GetUserData(string username)
+    {
+        return new UserData
+        {
+            name = username,
+            userAuthID = AuthenticationService.Instance.PlayerId
+        };
+    }
+
     public async Task<List<Lobby>> GetLobbyList()
     {
         try

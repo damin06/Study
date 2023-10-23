@@ -1,0 +1,29 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/GameHUD/GameHUD.uss?fileID=7433441132597879392&amp;guid=cc3540c233653ce4cb9ec420f8690ab0&amp;type=3#GameHUD" />
+    <Style src="project://database/Assets/common.uss?fileID=7433441132597879392&amp;guid=75af0f0118589904ab00181112185b9a&amp;type=3#common" />
+    <ui:VisualElement name="container" class="container">
+        <ui:VisualElement name="waiting-panel" class="waiting-panel">
+            <ui:VisualElement name="waiting-box" class="waiting-box">
+                <ui:Label tabindex="-1" text="다른 플레이어를 기다리는 중..." display-tooltip-when-elided="true" name="msg-label" class="nps-font" style="-unity-text-align: middle-left;" />
+                <ui:VisualElement name="player-row" class="player-row">
+                    <ui:VisualElement name="player1" class="player" style="background-color: rgba(0, 0, 0, 0);">
+                        <ui:VisualElement name="sprite" style="background-color: rgba(0, 0, 0, 0);">
+                            <ui:VisualElement name="checker" class="check" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+                        </ui:VisualElement>
+                        <ui:Label tabindex="-1" text="이름" display-tooltip-when-elided="true" name="name-label" class="nps-font" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="player2" class="player" style="background-color: rgba(0, 0, 0, 0);">
+                        <ui:VisualElement name="sprite" style="background-color: rgba(0, 0, 0, 0);">
+                            <ui:VisualElement name="checker" class="check" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+                        </ui:VisualElement>
+                        <ui:Label tabindex="-1" text="이름" display-tooltip-when-elided="true" name="name-label" class="nps-font" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="button-row" style="background-color: rgba(0, 0, 0, 0); flex-direction: row; align-items: center; justify-content: center;">
+                    <ui:Button text="게임 시작" display-tooltip-when-elided="true" name="btn-start" class="nps-font btn" style="-unity-font-style: bold; background-color: rgb(255, 120, 0);" />
+                    <ui:Button text="준비 완료" display-tooltip-when-elided="true" name="btn-ready" class="nps-font btn" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

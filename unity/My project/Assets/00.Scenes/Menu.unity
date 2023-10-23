@@ -405,3 +405,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _createPanelAsset: {fileID: 9197481963319205126, guid: 0e52ae6d6cd11974ea3500820047b93f, type: 3}
   _lobbyPanelAsset: {fileID: 9197481963319205126, guid: 4d48670b976be7e438917b93a6a5fb6c, type: 3}
+  _lobbyTemplateAsset: {fileID: 9197481963319205126, guid: 318ca9c242a3c594b851f76a610e0b16, type: 3}

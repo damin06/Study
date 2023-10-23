@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
+using Unity.Networking.Transport.Relay;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using UnityEngine;
@@ -36,6 +39,14 @@ public class ClientGameManager : MonoBehaviour
         {
             Debug.LogError(e);
             return;
-        }   
+        }
+
+        var transport = NetworkManager.Singleton.GetComponent<UnityTransport>();
+
+        var relayServerData = new RelayServerData(_allocation, "dtls");
+        transport.SetRelayServerData(relayServerData);
+        string json = JsonUtility.ToJson(userData);
+        NetworkManager.Singleton.NetworkConfig.ConnectionData = Encoding.UTF8.GetBytes(json);
+        NetworkManager.Singleton.StartClient();
     }
 }
