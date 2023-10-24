@@ -86,4 +86,13 @@ public class NetworkServer : IDisposable
             _networkManager.Shutdown();
         }
     }
+
+    public void SpawnPlayer(ulong clientID, Vector3 position, ushort colorIdx)
+    {
+        var player = GameObject.Instantiate(_playerPrefab, position, Quaternion.identity);
+        player.SpawnAsPlayerObject(clientID);
+
+        PlayerColorizer color = player.GetComponent<PlayerColorizer>();
+        color.SetColor(colorIdx);
+    }
 }
