@@ -10,7 +10,7 @@ using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using UnityEngine;
 
-public class ClientGameManager : MonoBehaviour
+public class ClientGameManager
 {
     private NetworkManager _networkManager;
     private JoinAllocation _allocation;

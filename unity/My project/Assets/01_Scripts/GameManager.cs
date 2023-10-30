@@ -36,10 +36,16 @@ public class GameManager : NetworkBehaviour
     private ushort _colorIndx;
     private int _readyUserCount = 0;
 
+    public EggManager EggManager { get; private set; }
+    public TurnManager TurnManager { get; private set; }
+
     private void Awake()
     {
         Instance = this;
         players = new NetworkList<GameData>();  
+
+        EggManager = GetComponent<EggManager>();
+        TurnManager = GetComponent<TurnManager>();   
     }
 
     private void Start()

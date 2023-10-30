@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 54687413483634385}
   - component: {fileID: 2140353446490113357}
   - component: {fileID: 5036943769743296301}
+  - component: {fileID: 5380507988344685072}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -54,6 +55,7 @@ MonoBehaviour:
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
 --- !u!114 &2174156514302692797
@@ -149,6 +151,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 5484201535813308603}
+--- !u!114 &5380507988344685072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218868420428120068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5ee772a3d3cc3748b099d008a222796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider2D: {fileID: 54687413483634385}
+  _spriteRenderer: {fileID: 5484201535813308603}
+  myRole:
+    m_InternalValue: 0
 --- !u!1 &5380232932072533251
 GameObject:
   m_ObjectHideFlags: 0
