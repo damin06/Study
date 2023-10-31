@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class GameHUD : MonoBehaviour
@@ -15,6 +16,11 @@ public class GameHUD : MonoBehaviour
 
     private List<PlayerUI> _players = new();
     private int _currentPlayer;
+
+    private Label _hostScore;
+    private Label _clientScore;
+
+    private VisualElement _resultBox;
 
     private VisualElement _container;
 
@@ -29,6 +35,13 @@ public class GameHUD : MonoBehaviour
         _startGameBtn = root.Q<Button>("btn-start");
         _readyGameBtn = root.Q<Button>("btn-ready");
         _container = root.Q<VisualElement>("container");
+
+        _hostScore = root.Q<Label>("host-socre");
+        _clientScore = root.Q<Label>("client-socre");
+
+        _resultBox = root.Q<VisualElement>("result-box");
+        _resultBox.AddToClassList("off");
+
         root.Query<VisualElement>(className: "player").ToList().ForEach(x =>
         {
             var player = new PlayerUI(x);
@@ -38,6 +51,32 @@ public class GameHUD : MonoBehaviour
 
         _startGameBtn.RegisterCallback<ClickEvent>(HandleGameStartClick);
         _readyGameBtn.RegisterCallback<ClickEvent>(HandleReadtClick);
+
+        root.Q<Button>("btn-restart").RegisterCallback<ClickEvent>(HandleRestartClick);
+        SignalHub.OnScoreChanged += HandleScoreChanged;
+        SignalHub.OnEndGame += HandleEndGame;
+    }
+
+    private void HandleRestartClick(ClickEvent evt)
+    {
+        GameManager.Instance.GameReady();
+
+
+        _resultBox.AddToClassList("off");
+        _resultBox.RemoveFromClassList("off");
+    }
+
+    private void HandleEndGame(bool isWin)
+    {
+        string msg = isWin ? "Yout Win!" : "You Lose";
+        _resultBox.Q<Label>("result-label").text = msg;
+        _resultBox.RemoveFromClassList("off");
+    }
+
+    private void HandleScoreChanged(int hostScore, int clientScore)
+    {
+        _hostScore.text = hostScore.ToString(); 
+        _clientScore.text = clientScore.ToString(); 
     }
 
     private void Start()
@@ -65,6 +104,7 @@ public class GameHUD : MonoBehaviour
         if(state == GameState.Game)
         {
             _container.AddToClassList("off");
+            GameManager.Instance.GameReady();
         }
     }
 

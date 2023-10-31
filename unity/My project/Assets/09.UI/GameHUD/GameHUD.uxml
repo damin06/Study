@@ -1,6 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/09.UI/GameHUD/GameHUD.uss?fileID=7433441132597879392&amp;guid=cc3540c233653ce4cb9ec420f8690ab0&amp;type=3#GameHUD" />
     <Style src="project://database/Assets/common.uss?fileID=7433441132597879392&amp;guid=75af0f0118589904ab00181112185b9a&amp;type=3#common" />
+    <ui:VisualElement name="score-box" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; flex-direction: row; top: 20px; translate: -50% 0; flex-shrink: 0; left: 50%;">
+        <ui:Label tabindex="-1" text="00" display-tooltip-when-elided="true" name="host-score" class="nps-font" style="font-size: 60px; color: rgb(0, 255, 0);" />
+        <ui:Label tabindex="-1" text="-" display-tooltip-when-elided="true" name="hypen" class="nps-font" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-right: 25px; margin-left: 25px;" />
+        <ui:Label tabindex="-1" text="00" display-tooltip-when-elided="true" name="client-score" class="nps-font" style="font-size: 60px; color: rgb(255, 0, 0);" />
+    </ui:VisualElement>
     <ui:VisualElement name="container" class="container">
         <ui:VisualElement name="waiting-panel" class="waiting-panel">
             <ui:VisualElement name="waiting-box" class="waiting-box">
@@ -24,6 +29,12 @@
                     <ui:Button text="준비 완료" display-tooltip-when-elided="true" name="btn-ready" class="nps-font btn" />
                 </ui:VisualElement>
             </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="result-box" class="result-box">
+        <ui:VisualElement name="inner-box" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; justify-content: center;">
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="result-label" class="nps-font" style="font-size: 112px;" />
+            <ui:Button text="RESTART" display-tooltip-when-elided="true" name="btn-restart" class="nps-font" style="width: 327px; height: 174px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

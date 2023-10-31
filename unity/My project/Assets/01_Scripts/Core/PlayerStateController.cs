@@ -57,4 +57,9 @@ public class PlayerStateController : NetworkBehaviour
         _spriteRenderer.color = color;  
     }
 
+    [ClientRpc]
+    public void SetInitStateClientRpc(bool value)
+    {
+        EnablePlayer(value);
+    }
 }

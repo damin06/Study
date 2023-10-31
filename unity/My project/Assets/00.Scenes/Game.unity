@@ -390,7 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPostion: {fileID: 820930852}
   slimeColors:
-  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
   myGameRole: 0
 --- !u!114 &500728656
@@ -934,7 +934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: f242ff8dac8e7bc43993cc7844079f16, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 3d42b03f197ee4e46b41459f9a02c27a, type: 3}
   m_SortingOrder: 0
 --- !u!4 &1008531270
 Transform:

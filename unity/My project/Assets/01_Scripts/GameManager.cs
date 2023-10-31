@@ -38,6 +38,7 @@ public class GameManager : NetworkBehaviour
 
     public EggManager EggManager { get; private set; }
     public TurnManager TurnManager { get; private set; }
+    public ScoreManager ScoreManager { get; private set; }
 
     private void Awake()
     {
@@ -45,7 +46,8 @@ public class GameManager : NetworkBehaviour
         players = new NetworkList<GameData>();  
 
         EggManager = GetComponent<EggManager>();
-        TurnManager = GetComponent<TurnManager>();   
+        TurnManager = GetComponent<TurnManager>();
+        ScoreManager = GetComponent<ScoreManager>();
     }
 
     private void Start()
@@ -170,4 +172,31 @@ public class GameManager : NetworkBehaviour
             HostSingleton.Instance.GameManager.NetServer.SpawnPlayer(player.clientID, _spawnPostion.position, player.colorIdx);
         } 
     }
+
+    public void SendResultToClient(GameRole wineer)
+    {
+        HostSingleton.Instance.GameManager.NetServer.DestroyAllPlayer();
+        ScoreManager.InitialzieScore();
+        EggManager.DestroyEgg();
+        SendResultToClientRpc(wineer);
+    }
+
+    [ClientRpc]
+    public void SendResultToClientRpc(GameRole winner)
+    {
+        if(winner == myGameRole)
+        {
+            _gameState = GameState.Win;
+            SignalHub.OnEndGame?.Invoke(true);
+        }
+        else
+        {
+            _gameState = GameState.Lose;
+            SignalHub.OnEndGame?.Invoke(false);
+        }
+
+
+        GameStateChanged?.Invoke(_gameState);
+    }
+
 }

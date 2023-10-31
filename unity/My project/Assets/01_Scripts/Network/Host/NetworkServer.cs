@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Unity.Netcode;
+using Unity.Services.Lobbies.Models;
 using UnityEngine;
 
 public class NetworkServer : IDisposable
@@ -16,6 +17,8 @@ public class NetworkServer : IDisposable
     private Dictionary<string, UserData> _authIdToUserDataDictionart = new Dictionary<string, UserData>();
 
     private NetworkObject _playerPrefab;
+
+    private List<NetworkObject> _playerList = new List<NetworkObject>();
 
     public NetworkServer(NetworkManager networkManager, NetworkObject playerPrefab)
     {
@@ -91,8 +94,21 @@ public class NetworkServer : IDisposable
     {
         var player = GameObject.Instantiate(_playerPrefab, position, Quaternion.identity);
         player.SpawnAsPlayerObject(clientID);
+        _playerList.Add(player);
 
         PlayerColorizer color = player.GetComponent<PlayerColorizer>();
         color.SetColor(colorIdx);
+
+        PlayerStateController controller = player.GetComponent<PlayerStateController>();
+        controller.SetInitStateClientRpc(clientID == NetworkManager.Singleton.LocalClientId);
+    }
+
+    public void DestroyAllPlayer()
+    {
+        foreach(var p in _playerList)
+        {
+            GameObject.Destroy(p.gameObject);
+        }
+        _playerList.Clear();
     }
 }
