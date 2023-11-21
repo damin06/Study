@@ -49,4 +49,9 @@ public class ServerSingleton : MonoBehaviour
     {
         NetServer?.Dispose();
     }
+
+    public UserData getUserDataByClientID(ulong ownerClientId)
+    {
+        return NetServer.getUserDataByClientID(ownerClientId);
+    }
 }

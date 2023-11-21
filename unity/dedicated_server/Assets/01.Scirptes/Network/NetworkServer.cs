@@ -96,4 +96,15 @@ public class NetworkServer : IDisposable
     {
         return _clientIdToUserDataDictionary[clientID];
     }
+
+    [ServerRpc]
+    public UserData getUserDataByClientID(ulong clientID)
+    {
+        if (_clientIdToUserDataDictionary.TryGetValue(clientID, out UserData userData))
+        {
+            return userData;
+        }
+        return null;
+    }
+
 }
