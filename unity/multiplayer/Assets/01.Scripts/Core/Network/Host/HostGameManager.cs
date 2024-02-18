@@ -113,7 +113,6 @@ public class HostGameManager : IDisposable
         };
 
         NetworkManager.Singleton.NetworkConfig.ConnectionData = userData.Serialize().ToArray();
-
         NetworkManager.Singleton.StartHost();
         NetworkManager.Singleton.SceneManager.LoadScene(GameScenename, LoadSceneMode.Single);
     }
