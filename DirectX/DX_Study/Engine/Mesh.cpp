@@ -43,6 +43,9 @@ void Mesh::Render()
     CMD_LIST->IASetVertexBuffers(0, 1, &_vertexBufferView); // Slot: (0~15)
 
     // 루트 커스터마이징 서명
+    //CMD_LIST->SetGraphicsRootConstantBufferView(0,);
+    // 1. 버퍼에다가 데이터 세팅
+    // 2. 버퍼의 주소를 레지스터에 전송
 
     CMD_LIST->DrawInstanced(_vertexCount, 1, 0, 0);
 }

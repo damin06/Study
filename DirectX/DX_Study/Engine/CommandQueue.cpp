@@ -2,6 +2,7 @@
 #include "CommandQueue.h"
 #include "SwapChain.h"
 #include "DescriptorHeap.h"
+#include "Engine.h"
 
 CommandQueue::~CommandQueue()
 {
@@ -67,6 +68,9 @@ void CommandQueue::RenderBegin(const D3D12_VIEWPORT* vp, const D3D12_RECT* rect)
         _swapChain->GetCurrentBackBufferResource().Get(),
         D3D12_RESOURCE_STATE_PRESENT, // 화면 출력
         D3D12_RESOURCE_STATE_RENDER_TARGET); // 외주 결과물
+
+
+    _cmdList->SetGraphicsRootSignature(ROOT_SIGNATURE.Get());
 
     _cmdList->ResourceBarrier(1, &barrier);
 
