@@ -9,7 +9,8 @@
 #include "Physics/ABCollision.h"
 #include "Engine/DamageEvents.h"
 #include <Kismet/GameplayStatics.h>
-
+#include "Item/ABItemData.h"
+#include "Item/ABWeaponItemData.h"
 
 // Sets default values
 AABCharacterBase::AABCharacterBase()
@@ -82,12 +83,52 @@ AABCharacterBase::AABCharacterBase()
 		ComboAction = ComboActionDataRef.Object;
 	}
 
-	
+	// Item Weapon SkeletalMesh
+	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Weapon"));
+	Weapon->SetupAttachment(GetMesh(), TEXT("hand_rSocket"));
+
+	//Item Actions
+	TakeItemActions.Insert(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &AABCharacterBase::EquipWeapon)), (uint8)EItemType::Weapon);
+	TakeItemActions.Insert(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &AABCharacterBase::DrinkPotion)), (uint8)EItemType::Potion);
+	TakeItemActions.Insert(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &AABCharacterBase::ReadScroll)), (uint8)EItemType::Scroll);
 }
 
 void AABCharacterBase::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
+}
+
+void AABCharacterBase::TakeItem(UABItemData* IntItemData)
+{
+	if(IntItemData)
+	{
+		TakeItemActions[(uint8)IntItemData->Type].ItemDelegate.ExecuteIfBound(IntItemData);
+	}
+}
+
+void AABCharacterBase::EquipWeapon(UABItemData* InItemData)
+{
+	//UE_LOG(LofTemp, Log, TEXT("Equip Weapon"));
+
+	UABWeaponItemData* WeaponItemData = Cast<UABWeaponItemData>(InItemData);
+	if(WeaponItemData)
+	{
+		if(WeaponItemData->WeaponMesh.IsPending())
+		{
+			WeaponItemData->WeaponMesh.LoadSynchronous();
+		}
+		Weapon->SetSkeletalMesh(WeaponItemData->WeaponMesh.Get());
+	}
+}
+
+void AABCharacterBase::DrinkPotion(UABItemData* InItemData)
+{
+
+}
+
+void AABCharacterBase::ReadScroll(UABItemData* InItemData)
+{
+
 }
 
 void AABCharacterBase::AttackHitCheck()
