@@ -15,23 +15,28 @@ public:
 	// Sets default values for this actor's properties
 	AABItemBox();
 
-public:
-    UFUNCTION()
-    void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+protected:
+	virtual void PostInitializeComponents() override;
 
-    UFUNCTION()
-    void OnEffectFinished(class UParticleSystemComponent* ParticleSystem);
+public:
+	UFUNCTION()
+	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void OnEffectFinished(class UParticleSystemComponent* ParticleSystem);
+
+	TObjectPtr<class UBoxComponent> GetTrigger() { return Trigger; }
 
 protected:
-    UPROPERTY(VisibleAnywhere, Category = Box)
-    TObjectPtr<class UBoxComponent> Trigger;
+	UPROPERTY(VisibleAnywhere, Category = Box)
+	TObjectPtr<class UBoxComponent> Trigger;
 
-    UPROPERTY(VisibleAnywhere, Category = Box)
-    TObjectPtr<class UStaticMeshComponent> Mesh;
+	UPROPERTY(VisibleAnywhere, Category = Box)
+	TObjectPtr<class UStaticMeshComponent> Mesh;
 
-    UPROPERTY(VisibleAnywhere, Category = Box)
-    TObjectPtr<class UParticleSystemComponent> Effect;
+	UPROPERTY(VisibleAnywhere, Category = Box)
+	TObjectPtr<class UParticleSystemComponent> Effect;
 
-    UPROPERTY(EditAnywhere, Category = Item)
-    TObjectPtr<class UABItemData> Item;
+	UPROPERTY(EditAnywhere, Category = Item)
+	TObjectPtr<class UABItemData> Item;
 };

@@ -30,6 +30,8 @@ void CommandQueue::Init(ComPtr<ID3D12Device> device, shared_ptr<SwapChain> swapC
 
     //CPU와 GPU의 동기화 수단으로 쓰임
     device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&_fence));
+
+
     //멀티스레드에서 동기화 할 때 주로 사용하는 방법
     //이벤트는 신호등과 같은 존재
     //빨간불일땐 멈춰있다가 파란불이 켜질때까지 대기한다 -> 동기화
@@ -71,6 +73,11 @@ void CommandQueue::RenderBegin(const D3D12_VIEWPORT* vp, const D3D12_RECT* rect)
 
 
     _cmdList->SetGraphicsRootSignature(ROOT_SIGNATURE.Get());
+    GEngine->GetCB()->Clear();
+    GEngine->GetTableDescHeap()->Clear();
+
+    ID3D12DescriptorHeap* descHeap = GEngine->GetTableDescHeap()->GetDescriptorHeap().Get();
+    _cmdList->SetDescriptorHeaps(1, &descHeap);
 
     _cmdList->ResourceBarrier(1, &barrier);
 

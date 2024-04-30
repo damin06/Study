@@ -43,9 +43,22 @@ using Vec3 = XMFLOAT3;
 using Vec4 = XMFLOAT4;
 using Matrix = XMMATRIX;
 
-enum 
+enum class CBV_REGISTER
+{
+    b0,
+    b1,
+    b2,
+    b3,
+    b4,
+
+    END
+};
+
+enum
 {
     SWAP_CHAIN_BUFFER_COUNT = 2,
+    CBV_REGISTER_COUNT = CBV_REGISTER::END,
+    REGISTER_COUNT = CBV_REGISTER::END
 };
 
 struct WindowInfo
@@ -62,6 +75,11 @@ struct Vertex
     Vec4 color;
 };
 
+struct Transform
+{
+    Vec4 offset;
+};
+
 #define DEVICE          GEngine->GetDevice()->GetDevice()
 #define CMD_LIST        GEngine->GetCmdQueue()->GetCmdList()
 #define ROOT_SIGNATURE  GEngine->GetRootSignature()->GetSignature()
@@ -69,4 +87,3 @@ struct Vertex
 extern unique_ptr<class Engine> GEngine;
 
 //void HelloEngine();
-

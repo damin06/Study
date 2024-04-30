@@ -5,7 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Interface/ABAnimationAttackInterface.h"
-#include "Interface/ABCharacetItemInterface.h"
+#include "Interface/ABCharacterWidgetInterface.h"
+#include "Interface/ABCharacterItemInterface.h"
 #include "ABCharacterBase.generated.h"
 
 UENUM()
@@ -20,16 +21,16 @@ DECLARE_DELEGATE_OneParam(FOnTakeItemDelegate, class UABItemData* /*InItemData*/
 USTRUCT(BlueprintType)
 struct FTakeItemDelegateWrapper
 {
-	GENERATED_BODY();
+	GENERATED_BODY()
 
 	FTakeItemDelegateWrapper() {}
-	FTakeItemDelegateWrapper(const FOnTakeItemDelegate& InitItemDelegate) : ItemDelegate(InitItemDelegate) {}
+	FTakeItemDelegateWrapper(const FOnTakeItemDelegate& InItemDelegate) : ItemDelegate(InItemDelegate) {}
 
 	FOnTakeItemDelegate ItemDelegate;
 };
 
 UCLASS()
-class ARENABATTLE_API AABCharacterBase : public ACharacter, public IABAnimationAttackInterface, public IABCharacetItemInterface
+class ARENABATTLE_API AABCharacterBase : public ACharacter, public IABAnimationAttackInterface,  public IABCharacterWidgetInterface, public IABCharacterItemInterface
 {
 	GENERATED_BODY()
 
@@ -39,18 +40,32 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
-	// Item Section
+// Item Section
 protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Equipment, Meta = (AllowPrivateAccrss = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Equipment, Meta = (AllowPrivateAccess="true"))
 	TObjectPtr<class USkeletalMeshComponent> Weapon;
 
 	UPROPERTY()
 	TArray<FTakeItemDelegateWrapper> TakeItemActions;
 
-	virtual void TakeItem(class UABItemData* IntItemData);
+	virtual void TakeItem(class UABItemData* InItemData) override;
 	virtual void EquipWeapon(class UABItemData* InItemData);
 	virtual void DrinkPotion(class UABItemData* InItemData);
 	virtual void ReadScroll(class UABItemData* InItemData);
+
+// Stat Section
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat)
+	TObjectPtr<class UABCharacterStatComponent> Stat;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat)
+	TObjectPtr<class UABWidgetComponent> HpBar;
+
+	virtual void SetupCharacterWidget(class UABUserWidget* InUserWidget) override;
+
+public:
+	int32 GetLevel();
+	void SetLevel(int32 InNewLevel);
 
 // Attack Hit Section
 protected:

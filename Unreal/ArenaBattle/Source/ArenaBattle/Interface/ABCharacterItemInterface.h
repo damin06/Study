@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
-#include "ABCharacetItemInterface.generated.h"
+#include "ABCharacterItemInterface.generated.h"
 
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
-class UABCharacetItemInterface : public UInterface
+class UABCharacterItemInterface : public UInterface
 {
 	GENERATED_BODY()
 };
@@ -16,11 +16,11 @@ class UABCharacetItemInterface : public UInterface
 /**
  * 
  */
-class ARENABATTLE_API IABCharacetItemInterface
+class ARENABATTLE_API IABCharacterItemInterface
 {
 	GENERATED_BODY()
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-	virtual void TakeItem(class UABItemData* IntItemData) = 0;
+	virtual void TakeItem(class UABItemData* InItemData) = 0;
 };
