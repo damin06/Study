@@ -107,6 +107,8 @@ protected:
 	void ComboActionBegin();
 	void ComboActionEnd(class UAnimMontage* TargetMontage, bool IsPropertyEnded);
 
+	virtual void NotifyComboActionEnd();
+
 	void SetComboCheckTimer();
 	void ComboCheck();
 };
