@@ -8,18 +8,19 @@
 
 UABHUDWidget::UABHUDWidget(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
-
 }
 
 void UABHUDWidget::UpdateStat(const FABCharacterStat& BaseStat, const FABCharacterStat& ModifierStat)
 {
 	FABCharacterStat TotalStat = BaseStat + ModifierStat;
-	HpBar->SetMaxHp(TotalStat.MaxHp);
+
+	HpBar->UpdateStat(BaseStat, ModifierStat);
+	CharacterStat->UpdateStat(BaseStat, ModifierStat);
 }
 
-void UABHUDWidget::UpdateHp(float NewCurrentHP)
+void UABHUDWidget::UpdateHp(float NewCurrentHp)
 {
-	HpBar->UpdateHpBar(NewCurrentHP);
+	HpBar->UpdateHpBar(NewCurrentHp);
 }
 
 void UABHUDWidget::NativeConstruct()
@@ -29,11 +30,11 @@ void UABHUDWidget::NativeConstruct()
 	HpBar = Cast<UABHpBarWidget>(GetWidgetFromName(TEXT("WidgetHpBar")));
 	ensure(HpBar);
 
-	CharacterStat = Cast<UABCharacterStatWidget>(GetWidgetFromName(TEXT("WidgetCharactetStat")));
+	CharacterStat = Cast<UABCharacterStatWidget>(GetWidgetFromName(TEXT("WidgetCharacterStat")));
 	ensure(CharacterStat);
 
 	IABCharacterHUDInterface* HUDPawn = Cast<IABCharacterHUDInterface>(GetOwningPlayerPawn());
-	if (HUDPawn) 
+	if (HUDPawn)
 	{
 		HUDPawn->SetupHUDWidget(this);
 	}

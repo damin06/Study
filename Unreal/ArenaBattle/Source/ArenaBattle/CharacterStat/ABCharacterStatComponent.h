@@ -40,12 +40,23 @@ public:
 		BaseStat = InBaseStat;
 		OnStatChanged.Broadcast(GetBaseStat(), GetModifierStat());
 	}
-	FORCEINLINE void SetMoidifierStat(const FABCharacterStat& InModifierStat) 
+	FORCEINLINE void SetModifierStat(const FABCharacterStat& InModifierStat)
 	{
 		ModifierStat = InModifierStat;
 		OnStatChanged.Broadcast(GetBaseStat(), GetModifierStat());
 	}
 
+	FORCEINLINE void HealHp(float InHealAmount) 
+	{
+		CurrentHp = FMath::Clamp(CurrentHp + InHealAmount, 0, GetTotalStat().MaxHp);
+		OnHpChanged.Broadcast(CurrentHp);
+	}
+
+	FORCEINLINE void AddBaseStat(const FABCharacterStat InAddBaseStat)
+	{
+		BaseStat = BaseStat + InAddBaseStat;
+		OnStatChanged.Broadcast(GetBaseStat(), GetModifierStat());
+	}
 
 	void SetHp(float NewHp);
 	float ApplyDamage(float InDamage);

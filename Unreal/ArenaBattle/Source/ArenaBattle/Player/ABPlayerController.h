@@ -13,16 +13,16 @@ UCLASS()
 class ARENABATTLE_API AABPlayerController : public APlayerController
 {
 	GENERATED_BODY()
+	
 public:
 	AABPlayerController();
 
 protected:
 	virtual void BeginPlay() override;
 
-
-	// HUD Section
+// HUD Section
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HUD)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=HUD)
 	TSubclassOf<class UABHUDWidget> ABHUDWidgetClass;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = HUD)

@@ -20,7 +20,7 @@ public:
 
 public:
 	void UpdateStat(const FABCharacterStat& BaseStat, const FABCharacterStat& ModifierStat);
-	void UpdateHp(float NewCurrentHP);
+	void UpdateHp(float NewCurrentHp);
 
 protected:
 	virtual void NativeConstruct() override;

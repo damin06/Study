@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+//#include "Interface/ABGameModeInterface"
 #include "ABGameMode.generated.h"
 
 /**
@@ -17,6 +18,18 @@ class ARENABATTLE_API AABGameMode : public AGameModeBase
 public:
 	AABGameMode();
 
-private:
+public:
+	//virtual void OnPlayerScore(int32 NewPlayerScore) override;
+	//virtual void OnPlayerDead() override;
+	//virtual void ISGameCLeared() override;
 
+public:
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Game)
+	int32 ClearScore;
+
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Game)
+	int32 CurrentScore;
+
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Game)
+	int32 bIsCleared : 1;
 };
