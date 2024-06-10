@@ -96,7 +96,7 @@ enum
 	SWAP_CHAIN_BUFFER_COUNT = 2,
 	CBV_REGISTER_COUNT = CBV_REGISTER::END,
 	SRV_REGISTER_COUNT = static_cast<uint8>(SRV_REGISTER::END) - CBV_REGISTER_COUNT,
-	REGISTER_COUNT = CBV_REGISTER::END
+	REGISTER_COUNT = CBV_REGISTER_COUNT + SRV_REGISTER_COUNT,
 };
 
 
@@ -124,6 +124,9 @@ struct Transform
 #define CMD_LIST		GEngine->GetCmdQueue()->GetCmdList()
 #define ROOT_SIGNATURE	GEngine->GetRootSignature()->GetSignature()
 #define RESOURCE_CMD_LIST	GEngine->GetCmdQueue()->GetResourceCmdList()
+
+#define INPUT                GEngine->GetInput()
+#define DELTA_TIME            GEngine->GetTimer()->GetDeltaTime()
 
 extern unique_ptr<class Engine> GEngine;
 

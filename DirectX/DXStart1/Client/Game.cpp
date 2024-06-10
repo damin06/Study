@@ -72,16 +72,15 @@ void Game::Init(const WindowInfo& wInfo)
 
 	shader->Init(L"..\\Resources\\Shader\\default.hlsli");
 
-	texture->Init(L"..\\Resources\\Texture\\jang.jpg");
+	texture->Init(L"..\\Resources\\Texture\\defaultTex.jpg");
 
 	GEngine->GetCmdQueue()->WaitSync();
 }
 
 void Game::Update()
 {
-	// GEngine->Render();
+	GEngine->Update();
 
-	
 	GEngine->RenderBegin();
 
 	shader->Update();
@@ -104,10 +103,45 @@ void Game::Update()
 	//	mesh->Render();
 	//}
 
-	// VBV만 사용한 사각형
+	//// VBV만 사용한 사각형
+	//{
+	//	Transform t;
+	//	t.offset = Vec4(0.f, 0.f, 0.2f, 0.f);
+	//	mesh->SetTransform(t);
+
+	//	mesh->SetTexture(texture);
+
+	//	mesh->Render();
+	//}
+
+	//// VBV만 사용한 사각형
+	//{
+	//	Transform t;
+	//	t.offset = Vec4(0.25f, 0.25f, 0.f, 0.f);
+	//	mesh->SetTransform(t);
+
+	//	mesh->SetTexture(texture);
+
+	//	mesh->Render();
+	//}
+
+	
+	// 키보드 입력 테스트
 	{
-		Transform t;
-		t.offset = Vec4(0.f, 0.f, 0.2f, 0.f);
+		static Transform t = {};
+
+		if (INPUT->GetButton(KEY_TYPE::W))
+			t.offset.y += 1.f * DELTA_TIME;
+
+		if (INPUT->GetButton(KEY_TYPE::S))
+			t.offset.y -= 1.f * DELTA_TIME;
+
+		if (INPUT->GetButton(KEY_TYPE::A))
+			t.offset.x -= 1.f * DELTA_TIME;
+
+		if (INPUT->GetButton(KEY_TYPE::D))
+			t.offset.x += 1.f * DELTA_TIME;
+
 		mesh->SetTransform(t);
 
 		mesh->SetTexture(texture);
@@ -115,17 +149,21 @@ void Game::Update()
 		mesh->Render();
 	}
 
-	// VBV만 사용한 사각형
 	{
-		Transform t;
-		t.offset = Vec4(0.25f, 0.25f, 0.f, 0.f);
-		mesh->SetTransform(t);
+		static Transform a;
+		a.offset = Vec4(0.25f, 0.25f, 0.f, 0.f);
+
+		if (INPUT->GetButton(KEY_TYPE::SPACE))
+			a.offset.z -= DELTA_TIME;
+		else
+			a.offset.z += DELTA_TIME;
+
+		mesh->SetTransform(a);
 
 		mesh->SetTexture(texture);
 
 		mesh->Render();
 	}
-
 
 	GEngine->RenderEnd();
 }
