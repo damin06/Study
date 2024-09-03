@@ -2,6 +2,8 @@
 
 // std::byte 사용하지 않음
 #define _HAS_STD_BYTE 0
+#define CONST_BUFFER(type)    GEngine->GetConstantBuffer(type)
+
 
 // 각종 include
 #include <windows.h>
@@ -113,11 +115,6 @@ struct Vertex
 	Vec3 pos;		// 위치
 	Vec4 color;		// 색상
 	Vec2 uv;
-};
-
-struct Transform
-{
-	Vec4 offset;
 };
 
 #define DEVICE			GEngine->GetDevice()->GetDevice()

@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Engine.h"
-#include "sstream"
+#include "Material.h"
 
 void Engine::Init(const WindowInfo& wInfo)
 {
@@ -26,11 +26,13 @@ void Engine::Init(const WindowInfo& wInfo)
 	_swapChain->Init(wInfo, _device->GetDXGI(), _cmdQueue->GetCmdQueue());
 	_descHeap->Init(_device->GetDevice(), _swapChain);
 	_rootSignature->Init();
-	_cb->Init(sizeof(Transform), 256);
 	_tableDescHeap->Init(256);
 
 	_input->Init(wInfo.hwnd);
 	_timer->Init();
+
+	CreateConstantBuffer(CBV_REGISTER::b0, sizeof(Transform), 256);
+	CreateConstantBuffer(CBV_REGISTER::b1, sizeof(MaterialParams), 256);
 
 	ResizeWindow(wInfo.width, wInfo.height);
 }
@@ -81,4 +83,14 @@ void Engine::ShowFPS()
 	::wsprintf(text, L"FPS : %d", fps);
 
 	::SetWindowText(_window.hwnd, text);
+}
+
+void Engine::CreateConstantBuffer(CBV_REGISTER reg, uint32 bufferSize, uint32 count)
+{
+	uint8 typeInt = static_cast<uint8>(reg);
+	assert(_constantBuffers.size() == typeInt);
+
+	shared_ptr<ConstantBuffer> buffer = make_shared<ConstantBuffer>();
+	buffer->Init(reg, bufferSize, count);
+	_constantBuffers.push_back(buffer);
 }
